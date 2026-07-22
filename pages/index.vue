@@ -10,6 +10,7 @@ useSeoMeta({
 <template>
   <div>
     <HomeHero />
+    <HomeQualityHighlights />
     <HomeCategories />
     <HomeBestSeller />
     <HomeNewArrival />

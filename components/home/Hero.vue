@@ -49,7 +49,7 @@
     </div>
 
     <div class="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-black/35 backdrop-blur-md">
-      <div class="mx-auto grid max-w-[1440px] grid-cols-2 gap-px sm:grid-cols-4">
+      <div class="mx-auto grid max-w-[1440px] grid-cols-2 gap-px">
         <div
           v-for="badge in trustBadges"
           :key="badge.label"
@@ -71,9 +71,7 @@ const parallaxY = ref(0)
 const parallaxTransform = computed(() => `translate3d(0, ${parallaxY.value}px, 0) scale(1.08)`)
 
 const trustBadges = [
-  { stat: '10,000+', label: 'Happy Customers' },
   { stat: '500+', label: 'Products' },
-  { stat: '15 Years', label: 'Experience' },
   { stat: 'Free', label: 'Shipping*' },
 ]
 

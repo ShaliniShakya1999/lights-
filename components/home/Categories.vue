@@ -1,13 +1,29 @@
 <script setup lang="ts">
 const categories = [
-  { title: 'Chandeliers', image: '/collection_1.jpg', to: '/lighting/chandeliers', count: '48 pieces' },
-  { title: 'Pendant Lights', image: '/collection_2.jpg', to: '/lighting/pendant-lights', count: '62 pieces' },
-  { title: 'Wall Lights', image: '/homepages/a1.jpg', to: '/lighting/wall-lights', count: '41 pieces' },
-  { title: 'Table Lamps', image: '/homepages/b2.jpg', to: '/lighting/table-lamps', count: '38 pieces' },
-  { title: 'Floor Lamps', image: '/collection_3.jpg', to: '/lighting/floor-lamps', count: '35 pieces' },
-  { title: 'Ceiling Lights', image: '/homepages/c3.jpg', to: '/lighting/ceiling-lights', count: '54 pieces' },
-  { title: 'Outdoor Lights', image: '/homepages/d4.jpg', to: '/lighting/outdoor-lights', count: '28 pieces' },
-  { title: 'Track Lights', image: '/homepages/e5.jpg', to: '/lighting/track-lights', count: '22 pieces' },
+  {
+    title: 'Lamps',
+    image: '/homepages/b2.jpg',
+    to: '/lighting/lamps',
+    count: 'Table & floor lamps',
+  },
+  {
+    title: 'General Light Interior',
+    image: '/homepages/a1.jpg',
+    to: '/lighting/general-light-interior',
+    count: 'Everyday interiors',
+  },
+  {
+    title: 'Chandeliers',
+    image: '/collection_1.jpg',
+    to: '/lighting/chandeliers',
+    count: 'Statement pieces',
+  },
+  {
+    title: 'COB Panel Track Lights',
+    image: '/homepages/e5.jpg',
+    to: '/lighting/cob-panel-track-lights',
+    count: 'Commercial & home',
+  },
 ]
 </script>
 
@@ -20,11 +36,11 @@ const categories = [
           Shop By Category
         </h2>
         <p class="mt-4 text-sm text-text-muted sm:text-base" data-animate="fade-up" data-delay="0.16">
-          Large luxury collections designed for every architectural moment.
+          Explore lighting designed for every architectural moment.
         </p>
       </div>
 
-      <div class="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4 lg:gap-6" data-stagger-grid>
+      <div class="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6" data-stagger-grid>
         <NuxtLink
           v-for="(item, i) in categories"
           :key="item.title"

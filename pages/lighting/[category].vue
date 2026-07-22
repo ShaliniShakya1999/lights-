@@ -148,6 +148,9 @@ const categorySlug = computed(() => String(route.params.category || 'chandeliers
 const categoryMap: Record<string, string> = {
   'decorative-lighting': 'Decorative Lighting',
   chandeliers: 'Chandeliers',
+  lamps: 'Lamps',
+  'general-light-interior': 'General Light Interior',
+  'cob-panel-track-lights': 'COB Panel Track Lights',
   'ceiling-fans': 'Ceiling Fans',
   'door-bells-wifi': 'Door-Bells-Wifi',
   gadgets: 'Gadgets',
@@ -217,6 +220,9 @@ const bannerImage = computed(() => {
   const map: Record<string, string> = {
     'Decorative Lighting': '/homepages/slider_new1.jpg',
     Chandeliers: '/collection_1.jpg',
+    Lamps: '/homepages/b2.jpg',
+    'General Light Interior': '/homepages/a1.jpg',
+    'COB Panel Track Lights': '/homepages/e5.jpg',
     'Ceiling Fans': '/homepages/c3.jpg',
     'Door-Bells-Wifi': '/homepages/d4.jpg',
     Gadgets: '/homepages/e5.jpg',
