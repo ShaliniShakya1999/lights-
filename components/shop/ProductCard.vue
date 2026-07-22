@@ -15,8 +15,8 @@
         <img
           :src="product.images[0]"
           :alt="product.name"
-          class="h-full w-full object-cover transition-all duration-700 ease-out"
-          :class="hovered && secondaryImage ? 'opacity-0 scale-105' : 'opacity-100 scale-100 group-hover:scale-105'"
+          class="h-full w-full object-cover transition-transform duration-700 ease-out"
+          :class="hovered && secondaryImage ? 'opacity-0 scale-[1.03]' : 'opacity-100 scale-100 group-hover:scale-[1.03]'"
           loading="lazy"
         >
         <img
@@ -24,7 +24,7 @@
           :src="secondaryImage"
           :alt="`${product.name} alternate`"
           class="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-out"
-          :class="hovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'"
+          :class="hovered ? 'opacity-100 scale-[1.03]' : 'opacity-0 scale-100'"
           loading="lazy"
         >
       </NuxtLink>
@@ -47,11 +47,11 @@
         </span>
       </div>
 
-      <div class="absolute right-3 top-3 z-10 flex flex-col gap-2 opacity-100 translate-x-0 sm:opacity-0 sm:translate-x-2 sm:group-hover:opacity-100 sm:group-hover:translate-x-0 transition-all duration-400 ease-out">
+      <div class="absolute right-3 top-3 z-10 flex flex-col gap-2 opacity-100 max-sm:pointer-events-auto sm:opacity-0 sm:translate-y-1 sm:pointer-events-none sm:group-hover:pointer-events-auto sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
         <button
           type="button"
           class="icon-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-[#C45C6A]"
-          :class="{ 'animate-heart-pop !text-[#C45C6A]': wishlisted }"
+          :class="{ 'animate-heart-pop !text-[#C45C6A] !opacity-100': wishlisted }"
           :aria-label="wishlisted ? 'Remove wishlist' : 'Wishlist'"
           @click.stop="onWishlist"
         >
@@ -76,7 +76,7 @@
         </button>
       </div>
 
-      <div class="absolute inset-x-3 bottom-3 z-10 flex gap-2 opacity-100 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-400 ease-out">
+      <div class="absolute inset-x-3 bottom-3 z-10 flex gap-2 opacity-100 max-sm:pointer-events-auto sm:opacity-0 sm:translate-y-2 sm:pointer-events-none sm:group-hover:pointer-events-auto sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
         <button type="button" class="btn-primary flex-1 !py-2.5 !text-sm" @click.stop="onAdd($event)">
           Add to Cart
         </button>

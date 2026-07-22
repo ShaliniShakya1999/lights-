@@ -4,7 +4,7 @@
     :class="headerClass"
   >
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-      <div class="flex h-[72px] lg:h-[84px] items-center justify-between gap-4">
+      <div class="flex items-center justify-between gap-4 transition-[height] duration-500 ease-out" :class="navBarHeight">
         <NuxtLink to="/" class="group flex items-center shrink-0" aria-label="DINMANS home">
           <img
             :src="overHero ? '/wite.png' : '/logo.png'"
@@ -253,9 +253,15 @@ const isHome = computed(() => route.path === '/')
 const overHero = computed(() => isHome.value && !scrolled.value)
 
 const headerClass = computed(() => {
-  if (overHero.value) return 'bg-transparent border-b border-transparent'
-  return 'bg-white/80 backdrop-blur-2xl border-b border-border/80 shadow-glass'
+  if (overHero.value) return 'bg-transparent border-b border-transparent py-0'
+  return 'bg-white/85 backdrop-blur-2xl border-b border-border/80 shadow-glass'
 })
+
+const navBarHeight = computed(() =>
+  scrolled.value
+    ? 'h-[64px] lg:h-[72px]'
+    : 'h-[72px] lg:h-[84px]',
+)
 
 const navTextClass = computed(() =>
   overHero.value

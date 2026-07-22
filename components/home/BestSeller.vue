@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 lg:py-24 bg-white">
+  <section class="section-band bg-white py-20 lg:py-24">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div data-animate="fade-up">

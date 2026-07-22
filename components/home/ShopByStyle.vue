@@ -14,7 +14,7 @@
           v-for="(style, i) in styles"
           :key="style.title"
           :to="style.to"
-          class="group relative aspect-[3/4] overflow-hidden rounded-luxury card-reveal"
+          class="group relative aspect-[3/4] overflow-hidden rounded-luxury shadow-soft transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxury card-reveal"
           :style="{ animationDelay: `${i * 0.06}s` }"
           data-animate-child
         >

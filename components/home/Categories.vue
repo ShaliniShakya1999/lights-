@@ -6,7 +6,7 @@ const categories = productCategories
 </script>
 
 <template>
-  <section class="bg-background py-20 lg:py-28">
+  <section class="section-band bg-background py-20 lg:py-28">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mx-auto max-w-2xl text-center">
         <p class="section-label" data-animate="fade-up">Featured Categories</p>
@@ -23,7 +23,7 @@ const categories = productCategories
           v-for="(item, i) in categories"
           :key="item.title"
           :to="item.to"
-          class="group relative aspect-[3/4] overflow-hidden rounded-luxury shadow-soft card-reveal"
+          class="group relative aspect-[3/4] overflow-hidden rounded-luxury shadow-soft transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-luxury card-reveal"
           :style="{ animationDelay: `${i * 0.08}s` }"
           data-animate-child
         >

@@ -51,7 +51,7 @@
       >
         <NuxtLink
           to="/lighting/chandeliers"
-          class="btn-primary hero-cta min-w-[180px] !px-10 !py-4 !text-base shadow-gold"
+          class="btn-primary hero-cta min-w-[190px] !px-11 !py-4 !text-base !font-bold"
           @click="ripple"
         >
           Shop Collection
@@ -175,9 +175,14 @@ onMounted(() => {
   animation: ctaPulse 2.8s ease-in-out infinite;
 }
 
+.hero-cta:hover {
+  animation: none;
+  transform: translateY(-2px) scale(1.05);
+}
+
 @keyframes ctaPulse {
-  0%, 100% { box-shadow: 0 12px 28px rgba(232, 120, 42, 0.35); }
-  50% { box-shadow: 0 14px 36px rgba(232, 120, 42, 0.55); }
+  0%, 100% { box-shadow: 0 12px 28px rgba(232, 120, 42, 0.4); }
+  50% { box-shadow: 0 16px 40px rgba(232, 120, 42, 0.65); }
 }
 
 .scroll-line {

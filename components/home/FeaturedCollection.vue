@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white py-20 lg:py-28">
+  <section class="section-band bg-white py-20 lg:py-28">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div class="relative overflow-hidden rounded-luxury shadow-luxury" data-animate="fade-up">
