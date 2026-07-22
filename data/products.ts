@@ -914,16 +914,13 @@ export const filterOptions = {
   styles: ['Modern', 'Luxury', 'Classic', 'Minimal', 'Vintage'],
   bulbTypes: ['LED', 'E27', 'GU10'],
   availability: ['In Stock', 'Out of Stock'],
+  heights: ['60cm', '80cm', '95cm', '100cm', '120cm'],
+  diameters: ['40cm', '60cm', '80cm', '100cm'],
+  ratings: [4, 4.5, 5],
   priceBounds: [0, 250000] as [number, number],
 }
 
 export const relatedCategories = [
-  {
-    name: 'Chandeliers',
-    count: 48,
-    image: '/collection_1.jpg',
-    slug: 'chandeliers',
-  },
   {
     name: 'Pendant Lights',
     count: 62,
@@ -931,16 +928,22 @@ export const relatedCategories = [
     slug: 'pendant-lights',
   },
   {
-    name: 'Floor Lamps',
-    count: 35,
-    image: '/collection_3.jpg',
-    slug: 'floor-lamps',
-  },
-  {
     name: 'Wall Lights',
     count: 41,
     image: '/homepages/a1.jpg',
     slug: 'wall-lights',
+  },
+  {
+    name: 'Table Lamps',
+    count: 38,
+    image: '/homepages/b2.jpg',
+    slug: 'table-lamps',
+  },
+  {
+    name: 'Floor Lamps',
+    count: 35,
+    image: '/collection_3.jpg',
+    slug: 'floor-lamps',
   },
 ]
 

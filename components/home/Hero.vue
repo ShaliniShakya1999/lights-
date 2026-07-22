@@ -1,70 +1,97 @@
 <template>
-  <section class="relative h-[88vh] min-h-[560px] overflow-hidden">
-    <img
-      src="/hero_1.jpg"
-      alt="Luxury interior lighting"
-      class="absolute inset-0 h-full w-full object-cover scale-105 animate-[heroZoom_18s_ease-in-out_infinite_alternate]"
+  <section ref="heroRef" class="relative h-[92vh] min-h-[620px] overflow-hidden">
+    <div
+      class="absolute inset-0 will-change-transform"
+      :style="{ transform: `translate3d(0, ${parallaxY}px, 0) scale(1.08)` }"
     >
-    <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/65" />
-
-    <div class="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col items-center justify-center px-4 text-center text-white">
-      <p
-        class="section-label !text-accent tracking-[0.35em]"
-        data-animate="fade-down"
-        data-delay="0.05"
+      <img
+        src="/hero_1.jpg"
+        alt="Luxury interior with warm designer lighting"
+        class="h-full w-full object-cover"
       >
-        Luxury Interior Lighting
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/70" />
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.35)_100%)]" />
+
+    <div class="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col items-center justify-center px-4 pb-28 pt-28 text-center text-white lg:pt-32">
+      <p
+        class="section-label !text-accent tracking-[0.35em] opacity-0 animate-[fadeUp_0.8s_ease_forwards]"
+        style="animation-delay: 0.1s"
+      >
+        DINMANS Design Studio
       </p>
       <h1
-        class="mt-6 font-playfair text-5xl leading-[1.1] sm:text-6xl lg:text-7xl text-balance text-white"
-        data-animate="fade-up"
-        data-delay="0.15"
+        class="mt-6 font-playfair text-5xl leading-[1.08] sm:text-6xl lg:text-7xl xl:text-[5.25rem] text-balance text-white opacity-0 animate-[fadeUp_0.9s_ease_forwards]"
+        style="animation-delay: 0.22s"
       >
-        Illuminate Every<br>Corner
+        Luxury Lighting for<br class="hidden sm:block"> Modern Homes
       </h1>
       <p
-        class="mt-7 max-w-xl text-base sm:text-lg text-white/70 leading-relaxed"
-        data-animate="fade-up"
-        data-delay="0.28"
+        class="mt-7 max-w-2xl text-base sm:text-lg text-white/75 leading-relaxed opacity-0 animate-[fadeUp_0.9s_ease_forwards]"
+        style="animation-delay: 0.38s"
       >
-        Premium chandeliers, designer lights &amp; luxury home decor — crafted for spaces that demand presence.
+        Crafted chandeliers, designer lamps and premium lighting solutions
+        that transform every space.
       </p>
       <div
-        class="mt-10 flex flex-wrap justify-center gap-4"
-        data-animate="zoom-in"
-        data-delay="0.4"
+        class="mt-10 flex flex-wrap justify-center gap-4 opacity-0 animate-[fadeUp_0.9s_ease_forwards]"
+        style="animation-delay: 0.52s"
       >
-        <NuxtLink to="/lighting/chandeliers" class="btn-primary animate-pulse-glow" @click="ripple">
-          Explore Collection
-        </NuxtLink>
-        <a
-          href="#inspiration"
-          class="btn-secondary !border-white !text-white hover:!bg-white hover:!text-secondary"
+        <NuxtLink
+          to="/lighting/chandeliers"
+          class="btn-primary !bg-accent !text-secondary shadow-gold min-w-[160px]"
           @click="ripple"
         >
-          Watch Lookbook
-        </a>
+          Shop Collection
+        </NuxtLink>
+        <NuxtLink
+          to="/lighting/decorative-lighting"
+          class="btn-secondary !border-white/80 !text-white hover:!bg-white hover:!text-secondary min-w-[160px]"
+          @click="ripple"
+        >
+          Explore Catalog
+        </NuxtLink>
       </div>
     </div>
 
-    <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50"
-      data-animate="fade-up"
-      data-delay="0.7"
-    >
-      <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-      <span class="h-8 w-px bg-gradient-to-b from-white/60 to-transparent animate-float" />
+    <!-- Trust strip -->
+    <div class="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-black/35 backdrop-blur-md">
+      <div class="mx-auto grid max-w-[1440px] grid-cols-2 gap-px sm:grid-cols-4">
+        <div
+          v-for="(item, i) in trustBadges"
+          :key="item.label"
+          class="flex flex-col items-center justify-center gap-1 px-4 py-5 text-center sm:py-6"
+          :style="{ animationDelay: `${0.6 + i * 0.08}s` }"
+        >
+          <p class="font-playfair text-xl text-accent sm:text-2xl">{{ item.value }}</p>
+          <p class="text-[10px] uppercase tracking-[0.2em] text-white/65 sm:text-[11px]">{{ item.label }}</p>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
 const { ripple } = useMotion()
-</script>
+const heroRef = ref<HTMLElement | null>(null)
+const parallaxY = ref(0)
 
-<style scoped>
-@keyframes heroZoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
-}
-</style>
+const trustBadges = [
+  { value: '10,000+', label: 'Happy Customers' },
+  { value: '500+', label: 'Products' },
+  { value: '15 Years', label: 'Experience' },
+  { value: 'Free', label: 'Shipping*' },
+]
+
+onMounted(() => {
+  const onScroll = () => {
+    if (!heroRef.value) return
+    const rect = heroRef.value.getBoundingClientRect()
+    if (rect.bottom < 0) return
+    parallaxY.value = Math.min(80, Math.max(0, -rect.top * 0.25))
+  }
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onUnmounted(() => window.removeEventListener('scroll', onScroll))
+})
+</script>

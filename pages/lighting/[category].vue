@@ -1,7 +1,8 @@
 <template>
-  <div class="pb-24 lg:pb-16">
+  <div class="pb-28 lg:pb-16">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-      <ShopBreadcrumb :items="breadcrumbs" />
+      <ShopBreadcrumb :items="breadcrumbs" :count="filteredProducts.length" />
+
       <ShopCollectionBanner
         :title="bannerTitle"
         :subtitle="bannerSubtitle"
@@ -10,17 +11,19 @@
 
       <div id="products" class="mt-8 scroll-mt-28 lg:mt-10">
         <div
-          class="sticky top-16 z-30 -mx-4 bg-background/95 px-4 py-3 backdrop-blur-md sm:mx-0 sm:px-0 lg:static lg:bg-transparent lg:py-0 lg:backdrop-blur-none"
+          class="sticky top-[72px] z-30 -mx-4 bg-background/90 px-4 py-3 backdrop-blur-xl sm:mx-0 sm:rounded-none sm:px-0 lg:top-[84px]"
           data-animate="fade-up"
         >
           <ShopProductToolbar
-            :count="filteredProducts.length"
+            :range="pageRange"
             :search="filters.search"
             :sort="sortBy"
             :columns="gridColumns"
+            :view="viewMode"
             @update:search="filters.search = $event"
             @update:sort="sortBy = $event"
             @update:columns="gridColumns = $event"
+            @update:view="viewMode = $event"
           />
         </div>
 
@@ -29,7 +32,7 @@
             <ShopFilterSidebar
               v-model="filters"
               :active-count="activeFilterCount"
-              class="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin"
+              class="sticky top-40 max-h-[calc(100vh-11rem)] overflow-y-auto scrollbar-thin"
               @clear="onClearFilters"
             />
           </div>
@@ -46,35 +49,39 @@
               <ShopProductGrid
                 :products="paginatedProducts"
                 :columns="gridColumns"
+                :list="viewMode === 'list'"
                 @quick-view="quickViewProduct = $event"
                 @add-to-cart="onAddToCart"
+                @quote="onQuote"
               />
               <ShopPagination
                 v-model:page="currentPage"
                 :total-pages="totalPages"
+                :range="pageRange"
               />
             </template>
           </div>
         </div>
       </div>
 
-      <div class="mt-20 space-y-20">
+      <div class="mt-16 space-y-16 lg:mt-20 lg:space-y-20">
+        <ShopCategoryTrust />
+        <ShopCategorySeo :category="categoryName" />
         <div data-animate="fade-up">
           <ShopRecentlyViewed :products="recentProducts" />
         </div>
         <ShopRelatedCategories />
-        <ShopInspirationBanner />
       </div>
     </div>
 
-    <!-- Mobile sticky filter / sort -->
+    <!-- Mobile bottom sheet triggers -->
     <div class="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-border bg-white/95 p-3 backdrop-blur-xl lg:hidden">
       <button type="button" class="btn-secondary flex-1 !py-3" @click="filterOpen = true">
         <SlidersHorizontal :size="16" />
-        Filters
+        Filter
         <span
           v-if="activeFilterCount"
-          class="ml-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 text-[10px] text-white"
+          class="ml-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 text-[10px] text-secondary"
         >
           {{ activeFilterCount }}
         </span>
@@ -86,11 +93,21 @@
       >
         <option value="featured">Featured</option>
         <option value="newest">Newest</option>
+        <option value="popularity">Popularity</option>
+        <option value="bestselling">Best Selling</option>
         <option value="price-asc">Price ↑</option>
         <option value="price-desc">Price ↓</option>
-        <option value="bestselling">Best Selling</option>
-        <option value="rating">Top Rated</option>
+        <option value="rating">Rating</option>
       </select>
+      <button
+        type="button"
+        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-border bg-white"
+        :aria-label="viewMode === 'grid' ? 'List view' : 'Grid view'"
+        @click="viewMode = viewMode === 'grid' ? 'list' : 'grid'"
+      >
+        <List v-if="viewMode === 'grid'" :size="16" />
+        <LayoutGrid v-else :size="16" />
+      </button>
     </div>
 
     <ShopMobileFilterDrawer
@@ -120,7 +137,7 @@
 </template>
 
 <script setup lang="ts">
-import { SlidersHorizontal } from 'lucide-vue-next'
+import { LayoutGrid, List, SlidersHorizontal } from 'lucide-vue-next'
 import type { Product, SortOption } from '~/types/product'
 
 definePageMeta({ layout: 'website' })
@@ -150,7 +167,9 @@ const {
   filters,
   sortBy,
   gridColumns,
+  viewMode,
   currentPage,
+  pageRange,
   isLoading,
   filteredProducts,
   paginatedProducts,
@@ -166,8 +185,6 @@ const filterOpen = ref(false)
 const quickViewProduct = ref<Product | null>(null)
 const toast = ref('')
 
-// Always start category pages with the full lighting catalog visible.
-// Category context comes from the banner; sidebar filters are user-driven.
 watch(categorySlug, () => {
   resetFilters(false)
 }, { immediate: true })
@@ -192,8 +209,10 @@ const breadcrumbs = computed(() => [
   { label: categoryName.value },
 ])
 
-const bannerTitle = computed(() => `Luxury ${categoryName.value} Collection`)
-const bannerSubtitle = 'Discover premium handcrafted lighting collections for modern interiors.'
+const bannerTitle = computed(() => `Luxury ${categoryName.value}`)
+const bannerSubtitle = computed(() =>
+  `Elegant designer ${categoryName.value.toLowerCase()} crafted for modern interiors.`,
+)
 const bannerImage = computed(() => {
   const map: Record<string, string> = {
     'Decorative Lighting': '/homepages/slider_new1.jpg',
@@ -204,6 +223,10 @@ const bannerImage = computed(() => {
     'Pendant Lights': '/collection_2.jpg',
     'Floor Lamps': '/collection_3.jpg',
     'Wall Lights': '/homepages/a1.jpg',
+    'Table Lamps': '/homepages/b2.jpg',
+    'Ceiling Lights': '/homepages/f6.jpg',
+    'Outdoor Lights': '/homepages/g7.jpg',
+    'Track Lights': '/homepages/e5.jpg',
   }
   return map[categoryName.value] || '/hero_1.jpg'
 })
@@ -215,11 +238,16 @@ function onAddToCart(product: Product) {
   quickViewProduct.value = null
 }
 
+function onQuote(product: Product) {
+  toast.value = `Quote requested for ${product.name}`
+  setTimeout(() => { toast.value = '' }, 2500)
+}
+
 useSeoMeta({
   title: () => `${categoryName.value} | DINMANS Luxury Lighting`,
   description: () => `Shop premium ${categoryName.value.toLowerCase()} — handcrafted luxury lighting for modern interiors.`,
-  ogTitle: () => `Luxury ${categoryName.value} Collection | DINMANS`,
-  ogDescription: () => bannerSubtitle,
+  ogTitle: () => `Luxury ${categoryName.value} | DINMANS`,
+  ogDescription: () => bannerSubtitle.value,
   ogImage: () => bannerImage.value,
 })
 </script>

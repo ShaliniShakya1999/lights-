@@ -28,6 +28,10 @@ export function createDefaultFilters(category?: string): FilterState {
     styles: [],
     bulbTypes: [],
     availability: [],
+    heights: [],
+    diameters: [],
+    minRating: 0,
+    onSale: false,
     search: '',
   }
 }
@@ -60,6 +64,27 @@ function matchesFilters(product: Product, filters: FilterState): boolean {
     if (wantsOut && !wantsIn && product.inStock) return false
   }
 
+  if (filters.onSale && !product.oldPrice) return false
+  if (filters.minRating > 0 && product.rating < filters.minRating) return false
+
+  if (filters.heights.length) {
+    const sizeText = (product.sizes ?? []).map(s => s.label).join(' ').toLowerCase()
+    const specsText = product.specs.map(s => `${s.label} ${s.value}`).join(' ').toLowerCase()
+    const hay = `${sizeText} ${specsText}`
+    if (!filters.heights.some(h => hay.includes(h.toLowerCase().replace('cm', '').trim()) || hay.includes(h.toLowerCase()))) {
+      return false
+    }
+  }
+
+  if (filters.diameters.length) {
+    const sizeText = (product.sizes ?? []).map(s => s.label).join(' ').toLowerCase()
+    const specsText = product.specs.map(s => `${s.label} ${s.value}`).join(' ').toLowerCase()
+    const hay = `${sizeText} ${specsText}`
+    if (!filters.diameters.some(d => hay.includes(d.toLowerCase().replace('ø', '').replace('cm', '').trim()) || hay.includes(d.toLowerCase()))) {
+      return false
+    }
+  }
+
   if (product.price < filters.priceRange[0] || product.price > filters.priceRange[1]) return false
 
   return true
@@ -70,6 +95,8 @@ function sortProducts(list: Product[], sort: SortOption): Product[] {
   switch (sort) {
     case 'newest':
       return sorted.sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt))
+    case 'popularity':
+      return sorted.sort((a, b) => b.reviewCount - a.reviewCount || b.rating - a.rating)
     case 'price-asc':
       return sorted.sort((a, b) => a.price - b.price)
     case 'price-desc':
@@ -89,8 +116,9 @@ export function useProductCatalog(options?: { defaultCategory?: string }) {
   const sortBy = useState<SortOption>('shop-sort', () => 'featured')
   const gridColumns = useState<2 | 3 | 4>('shop-grid', () => 3)
   const currentPage = useState('shop-page', () => 1)
-  const pageSize = 9
+  const pageSize = 12
   const isLoading = useState('shop-loading', () => false)
+  const viewMode = useState<import('~/types/product').ViewMode>('shop-view', () => 'grid')
 
   if (options?.defaultCategory) {
     // Applied by page watch — avoid sticky stale category from previous visit
@@ -120,9 +148,21 @@ export function useProductCatalog(options?: { defaultCategory?: string }) {
     count += f.styles.length
     count += f.bulbTypes.length
     count += f.availability.length
+    count += f.heights.length
+    count += f.diameters.length
+    if (f.minRating > 0) count += 1
+    if (f.onSale) count += 1
     if (f.priceRange[0] > 0 || f.priceRange[1] < 250000) count += 1
     if (f.search) count += 1
     return count
+  })
+
+  const pageRange = computed(() => {
+    const total = filteredProducts.value.length
+    if (!total) return { from: 0, to: 0, total: 0 }
+    const from = (currentPage.value - 1) * pageSize + 1
+    const to = Math.min(currentPage.value * pageSize, total)
+    return { from, to, total }
   })
 
   function resetFilters(keepCategory = true) {
@@ -155,8 +195,10 @@ export function useProductCatalog(options?: { defaultCategory?: string }) {
     filters,
     sortBy,
     gridColumns,
+    viewMode,
     currentPage,
     pageSize,
+    pageRange,
     isLoading,
     filteredProducts,
     paginatedProducts,

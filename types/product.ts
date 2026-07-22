@@ -1,4 +1,4 @@
-export type ProductBadge = 'luxury' | 'bestseller' | 'new' | 'sale'
+export type ProductBadge = 'luxury' | 'bestseller' | 'new' | 'sale' | 'limited' | 'trending' | 'exclusive'
 
 export type ProductColor = {
   name: string
@@ -84,12 +84,14 @@ export type CartItem = {
 export type SortOption =
   | 'featured'
   | 'newest'
+  | 'popularity'
   | 'price-asc'
   | 'price-desc'
   | 'bestselling'
   | 'rating'
 
 export type GridColumns = 2 | 3 | 4
+export type ViewMode = 'grid' | 'list'
 
 export type FilterState = {
   categories: string[]
@@ -102,5 +104,9 @@ export type FilterState = {
   styles: string[]
   bulbTypes: string[]
   availability: string[]
+  heights: string[]
+  diameters: string[]
+  minRating: number
+  onSale: boolean
   search: string
 }

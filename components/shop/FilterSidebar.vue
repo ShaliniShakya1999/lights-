@@ -1,5 +1,5 @@
 <template>
-  <aside class="luxury-card self-start p-6">
+  <aside class="rounded-luxury border border-border bg-white p-6 shadow-soft self-start">
     <div class="flex items-center justify-between gap-3 mb-6">
       <h2 class="font-playfair text-xl">Filters</h2>
       <button
@@ -8,30 +8,11 @@
         class="text-xs font-medium text-accent hover:text-accent-hover transition-colors"
         @click="$emit('clear')"
       >
-        Clear all
+        Clear all ({{ activeCount }})
       </button>
     </div>
 
-    <div class="space-y-7">
-      <ShopFilterGroup title="Category" :default-open="true">
-        <label
-          v-for="cat in options.categories"
-          :key="cat"
-          class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted transition-colors hover:text-text"
-        >
-          <input
-            type="checkbox"
-            class="peer sr-only"
-            :checked="model.categories.includes(cat)"
-            @change="toggle('categories', cat)"
-          >
-          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent transition-colors">
-            <Check v-if="model.categories.includes(cat)" :size="11" class="text-white" />
-          </span>
-          {{ cat }}
-        </label>
-      </ShopFilterGroup>
-
+    <div class="space-y-6">
       <ShopFilterGroup title="Price" :default-open="true">
         <div class="pt-1">
           <input
@@ -50,39 +31,21 @@
         </div>
       </ShopFilterGroup>
 
-      <ShopFilterGroup title="Brand">
-        <label
-          v-for="brand in options.brands"
-          :key="brand"
-          class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text"
-        >
-          <input
-            type="checkbox"
-            class="peer sr-only"
-            :checked="model.brands.includes(brand)"
-            @change="toggle('brands', brand)"
-          >
+      <ShopFilterGroup title="Brand" :default-open="true">
+        <label v-for="brand in options.brands" :key="brand" class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.brands.includes(brand)" @change="toggle('brands', brand)">
           <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
-            <Check v-if="model.brands.includes(brand)" :size="11" class="text-white" />
+            <Check v-if="model.brands.includes(brand)" :size="11" class="text-secondary" />
           </span>
           {{ brand }}
         </label>
       </ShopFilterGroup>
 
       <ShopFilterGroup title="Material">
-        <label
-          v-for="mat in options.materials"
-          :key="mat"
-          class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text"
-        >
-          <input
-            type="checkbox"
-            class="peer sr-only"
-            :checked="model.materials.includes(mat)"
-            @change="toggle('materials', mat)"
-          >
+        <label v-for="mat in options.materials" :key="mat" class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.materials.includes(mat)" @change="toggle('materials', mat)">
           <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
-            <Check v-if="model.materials.includes(mat)" :size="11" class="text-white" />
+            <Check v-if="model.materials.includes(mat)" :size="11" class="text-secondary" />
           </span>
           {{ mat }}
         </label>
@@ -95,9 +58,7 @@
             :key="finish"
             type="button"
             class="rounded-full border px-3.5 py-1.5 text-xs transition-all duration-luxury"
-            :class="model.finishes.includes(finish)
-              ? 'border-accent bg-accent-soft text-accent'
-              : 'border-border text-text-muted hover:border-accent/40'"
+            :class="model.finishes.includes(finish) ? 'border-accent bg-accent-soft text-accent' : 'border-border text-text-muted hover:border-accent/40'"
             @click="toggle('finishes', finish)"
           >
             {{ finish }}
@@ -126,22 +87,77 @@
       </ShopFilterGroup>
 
       <ShopFilterGroup title="Room">
-        <label
-          v-for="room in options.rooms"
-          :key="room"
-          class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text"
-        >
-          <input
-            type="checkbox"
-            class="peer sr-only"
-            :checked="model.rooms.includes(room)"
-            @change="toggle('rooms', room)"
-          >
+        <label v-for="room in options.rooms" :key="room" class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.rooms.includes(room)" @change="toggle('rooms', room)">
           <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
-            <Check v-if="model.rooms.includes(room)" :size="11" class="text-white" />
+            <Check v-if="model.rooms.includes(room)" :size="11" class="text-secondary" />
           </span>
           {{ room }}
         </label>
+      </ShopFilterGroup>
+
+      <ShopFilterGroup title="Height">
+        <label v-for="h in options.heights" :key="h" class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.heights.includes(h)" @change="toggle('heights', h)">
+          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
+            <Check v-if="model.heights.includes(h)" :size="11" class="text-secondary" />
+          </span>
+          {{ h }}
+        </label>
+      </ShopFilterGroup>
+
+      <ShopFilterGroup title="Diameter">
+        <label v-for="d in options.diameters" :key="d" class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.diameters.includes(d)" @change="toggle('diameters', d)">
+          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
+            <Check v-if="model.diameters.includes(d)" :size="11" class="text-secondary" />
+          </span>
+          {{ d }}
+        </label>
+      </ShopFilterGroup>
+
+      <ShopFilterGroup title="Bulb Type">
+        <label v-for="bulb in options.bulbTypes" :key="bulb" class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.bulbTypes.includes(bulb)" @change="toggle('bulbTypes', bulb)">
+          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
+            <Check v-if="model.bulbTypes.includes(bulb)" :size="11" class="text-secondary" />
+          </span>
+          {{ bulb }}
+        </label>
+      </ShopFilterGroup>
+
+      <ShopFilterGroup title="Availability">
+        <label v-for="avail in options.availability" :key="avail" class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.availability.includes(avail)" @change="toggle('availability', avail)">
+          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
+            <Check v-if="model.availability.includes(avail)" :size="11" class="text-secondary" />
+          </span>
+          {{ avail }}
+        </label>
+      </ShopFilterGroup>
+
+      <ShopFilterGroup title="Discount">
+        <label class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text">
+          <input type="checkbox" class="peer sr-only" :checked="model.onSale" @change="model = { ...model, onSale: !model.onSale }">
+          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
+            <Check v-if="model.onSale" :size="11" class="text-secondary" />
+          </span>
+          On Sale
+        </label>
+      </ShopFilterGroup>
+
+      <ShopFilterGroup title="Rating">
+        <button
+          v-for="r in options.ratings"
+          :key="r"
+          type="button"
+          class="mb-2 flex w-full items-center gap-2 rounded-xl border px-3 py-2 text-sm transition-all"
+          :class="model.minRating === r ? 'border-accent bg-accent-soft text-accent' : 'border-border text-text-muted hover:border-accent/40'"
+          @click="model = { ...model, minRating: model.minRating === r ? 0 : r }"
+        >
+          <span class="text-accent">★</span>
+          {{ r }}+ & up
+        </button>
       </ShopFilterGroup>
 
       <ShopFilterGroup title="Style">
@@ -151,52 +167,12 @@
             :key="style"
             type="button"
             class="rounded-full border px-3.5 py-1.5 text-xs transition-all duration-luxury"
-            :class="model.styles.includes(style)
-              ? 'border-accent bg-accent-soft text-accent'
-              : 'border-border text-text-muted hover:border-accent/40'"
+            :class="model.styles.includes(style) ? 'border-accent bg-accent-soft text-accent' : 'border-border text-text-muted hover:border-accent/40'"
             @click="toggle('styles', style)"
           >
             {{ style }}
           </button>
         </div>
-      </ShopFilterGroup>
-
-      <ShopFilterGroup title="Bulb Type">
-        <label
-          v-for="bulb in options.bulbTypes"
-          :key="bulb"
-          class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text"
-        >
-          <input
-            type="checkbox"
-            class="peer sr-only"
-            :checked="model.bulbTypes.includes(bulb)"
-            @change="toggle('bulbTypes', bulb)"
-          >
-          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
-            <Check v-if="model.bulbTypes.includes(bulb)" :size="11" class="text-white" />
-          </span>
-          {{ bulb }}
-        </label>
-      </ShopFilterGroup>
-
-      <ShopFilterGroup title="Availability">
-        <label
-          v-for="avail in options.availability"
-          :key="avail"
-          class="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-text-muted hover:text-text"
-        >
-          <input
-            type="checkbox"
-            class="peer sr-only"
-            :checked="model.availability.includes(avail)"
-            @change="toggle('availability', avail)"
-          >
-          <span class="flex h-4 w-4 items-center justify-center rounded border border-border peer-checked:border-accent peer-checked:bg-accent">
-            <Check v-if="model.availability.includes(avail)" :size="11" class="text-white" />
-          </span>
-          {{ avail }}
-        </label>
       </ShopFilterGroup>
     </div>
 
@@ -231,11 +207,10 @@ const model = computed({
 
 function toggle(key: keyof FilterState, value: string) {
   const current = model.value[key]
-  if (!Array.isArray(current) || typeof current[0] === 'number') return
+  if (!Array.isArray(current)) return
+  if (typeof current[0] === 'number') return
   const list = current as string[]
-  const next = list.includes(value)
-    ? list.filter(v => v !== value)
-    : [...list, value]
+  const next = list.includes(value) ? list.filter(v => v !== value) : [...list, value]
   model.value = { ...model.value, [key]: next }
 }
 

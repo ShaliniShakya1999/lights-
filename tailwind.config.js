@@ -12,20 +12,20 @@ module.exports = {
     extend: {
       colors: {
         accent: {
-          DEFAULT: '#E4823B',
-          hover: '#C86B2D',
-          soft: '#FDF4ED',
+          DEFAULT: '#D4AF37',
+          hover: '#C09B2A',
+          soft: '#F7F1DE',
         },
-        secondary: '#1E1E1E',
-        background: '#FAFAFA',
+        secondary: '#1A1A1A',
+        background: '#F8F5F0',
         card: '#FFFFFF',
         text: {
           DEFAULT: '#111111',
           muted: '#6B7280',
         },
-        border: '#ECECEC',
-        charcoal: '#1E1E1E',
-        gold: '#E4823B',
+        border: '#E8E2D9',
+        charcoal: '#1A1A1A',
+        gold: '#D4AF37',
       },
       fontFamily: {
         playfair: ['"Playfair Display"', 'serif'],
@@ -39,6 +39,7 @@ module.exports = {
         'luxury-hover': '0 28px 60px rgba(17, 17, 17, 0.12)',
         soft: '0 8px 24px rgba(17, 17, 17, 0.04)',
         glass: '0 8px 32px rgba(17, 17, 17, 0.08)',
+        gold: '0 12px 28px rgba(212, 175, 55, 0.35)',
       },
       transitionDuration: {
         luxury: '250ms',
