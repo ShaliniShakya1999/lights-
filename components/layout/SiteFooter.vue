@@ -70,24 +70,7 @@
         </div>
 
         <div class="sm:col-span-2 lg:col-span-4" data-animate="fade-up" data-delay="0.15">
-          <h4 class="text-base font-semibold tracking-wide text-white">Newsletter</h4>
-          <p class="mt-3 text-sm leading-relaxed text-white/70">
-            Get design tips and early access to new collections.
-          </p>
-          <form class="mt-4 flex flex-col gap-3 sm:flex-row" @submit.prevent="subscribed = true">
-            <input
-              v-model="email"
-              type="email"
-              required
-              placeholder="Your email"
-              class="input-luxury min-w-0 flex-1 !bg-white/95"
-            >
-            <button type="submit" class="btn-primary w-full shrink-0 !py-3 !text-sm sm:w-auto">
-              {{ subscribed ? 'Done' : 'Subscribe' }}
-            </button>
-          </form>
-
-          <div class="mt-6">
+          <div>
             <p class="text-xs uppercase tracking-[0.2em] text-white/55">Follow Us</p>
             <div class="mt-3 flex flex-wrap gap-3">
               <a
@@ -126,8 +109,6 @@
 
 <script setup lang="ts">
 const year = new Date().getFullYear()
-const email = ref('')
-const subscribed = ref(false)
 
 const socials = [
   { label: 'Instagram', short: 'Ig', href: '#' },
