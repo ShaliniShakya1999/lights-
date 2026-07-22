@@ -153,7 +153,7 @@ const support = [
 const company = [
   { label: 'About Us', to: '/about' },
   { label: 'Brands', to: '/brands' },
-  { label: 'Projects', to: '/projects' },
+  { label: 'RIF Gallery', to: '/projects' },
   { label: 'Blog', to: '/blog' },
   { label: 'Careers', to: '/about' },
 ]

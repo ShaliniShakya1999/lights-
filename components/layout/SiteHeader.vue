@@ -271,7 +271,7 @@ const iconBtnClass = computed(() =>
 const navLinks = [
   { label: 'About Us', to: '/about', match: '/about' },
   { label: 'Contact', to: '/contact', match: '/contact' },
-  { label: 'Projects', to: '/projects', match: '/projects' },
+  { label: 'RIF Gallery', to: '/projects', match: '/projects' },
 ]
 
 const megaCategories = productCategories.map(cat => ({
