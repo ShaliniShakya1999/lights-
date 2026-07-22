@@ -12,7 +12,7 @@
       :list="list"
       @quick-view="$emit('quickView', $event)"
       @add-to-cart="$emit('addToCart', $event)"
-      @quote="$emit('quote', $event)"
+      @buy="$emit('buy', $event)"
     />
   </div>
 </template>
@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<{
 defineEmits<{
   quickView: [product: Product]
   addToCart: [product: Product]
-  quote: [product: Product]
+  buy: [product: Product]
 }>()
 
 const gridClass = computed(() => {

@@ -116,9 +116,9 @@
           <button
             type="button"
             class="pointer-events-auto flex h-10 min-w-0 flex-1 items-center justify-center whitespace-nowrap rounded-full border border-border bg-white/95 px-3 text-xs font-medium text-text shadow-soft transition-all hover:border-accent hover:text-accent sm:text-sm"
-            @click.stop="onQuote"
+            @click.stop="onBuy"
           >
-            Quote
+            Buy
           </button>
         </div>
       </div>
@@ -212,9 +212,9 @@
         <button
           type="button"
           class="flex h-11 min-h-[44px] w-full items-center justify-center rounded-full border border-border bg-white text-sm font-medium text-text transition-all hover:border-accent hover:text-accent"
-          @click.stop="onQuote"
+          @click.stop="onBuy"
         >
-          Quote
+          Buy
         </button>
         <button
           type="button"
@@ -249,11 +249,13 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   quickView: [product: Product]
   addToCart: [product: Product]
-  quote: [product: Product]
+  buy: [product: Product]
 }>()
 
 const wishlist = useWishlist()
 const compare = useCompare()
+const cart = useCart()
+const router = useRouter()
 const { ripple, pop } = useMotion()
 const hovered = ref(false)
 
@@ -303,8 +305,10 @@ function onAdd(e: MouseEvent) {
   emit('addToCart', props.product)
 }
 
-function onQuote() {
-  emit('quote', props.product)
+function onBuy() {
+  cart.add(props.product.id, 1)
+  emit('buy', props.product)
+  router.push('/checkout')
 }
 
 function badgeLabel(badge: ProductBadge) {

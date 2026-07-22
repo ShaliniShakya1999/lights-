@@ -52,7 +52,7 @@
                 :list="viewMode === 'list'"
                 @quick-view="quickViewProduct = $event"
                 @add-to-cart="onAddToCart"
-                @quote="onQuote"
+                @buy="onBuy"
               />
               <ShopPagination
                 v-model:page="currentPage"
@@ -244,9 +244,9 @@ function onAddToCart(product: Product) {
   quickViewProduct.value = null
 }
 
-function onQuote(product: Product) {
-  toast.value = `Quote requested for ${product.name}`
-  setTimeout(() => { toast.value = '' }, 2500)
+function onBuy(product: Product) {
+  toast.value = `${product.name} — proceeding to checkout`
+  setTimeout(() => { toast.value = '' }, 2000)
 }
 
 useSeoMeta({
