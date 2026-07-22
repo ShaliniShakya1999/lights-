@@ -67,28 +67,9 @@
           </ul>
         </div>
 
-        <!-- Newsletter -->
+        <!-- Follow + GST -->
         <div class="lg:col-span-4" data-animate="fade-up" data-delay="0.15">
-          <h4 class="text-base font-semibold tracking-wide text-white">Email Newsletter</h4>
-          <p class="mt-4 text-base leading-relaxed text-white/75">
-            Subscribe to our newsletter and get 10% off your first purchase
-          </p>
-          <form class="mt-5 flex flex-col gap-3 sm:flex-row" @submit.prevent="onSubscribe">
-            <input
-              v-model="email"
-              type="email"
-              required
-              placeholder="Your email address"
-              aria-label="Email"
-              class="input-luxury flex-1 !bg-white/95"
-            >
-            <button type="submit" class="btn-primary shrink-0">
-              {{ subscribed ? 'Subscribed' : 'Subscribe' }}
-            </button>
-          </form>
-          <p class="mt-5 text-sm text-white/70">
-            GSTIN: 06BDOPS3565G1Z4
-          </p>
+          <h4 class="text-base font-semibold tracking-wide text-white">Follow Us</h4>
           <div class="mt-5 flex gap-3">
             <a
               v-for="s in socials"
@@ -100,29 +81,16 @@
               {{ s.short }}
             </a>
           </div>
+          <p class="mt-6 text-sm text-white/70">
+            GSTIN: 06BDOPS3565G1Z4
+          </p>
         </div>
       </div>
 
-      <div class="mt-14 flex flex-col gap-4 border-t border-white/20 pt-8 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left">
+      <div class="mt-14 border-t border-white/20 pt-8 text-center lg:text-left">
         <p class="text-sm text-white/65">
           Copyright © {{ year }} - Dinmans.com
         </p>
-        <div class="flex flex-wrap justify-center gap-2 lg:justify-end">
-          <span
-            v-for="pay in payments"
-            :key="pay"
-            class="rounded-md border border-white/20 bg-white/5 px-2.5 py-1 text-[11px] uppercase tracking-wider text-white/70"
-          >
-            {{ pay }}
-          </span>
-        </div>
-        <div class="flex flex-wrap justify-center gap-3 text-xs text-white/60 lg:justify-end">
-          <span>Secure Payment</span>
-          <span>·</span>
-          <span>Trusted Shipping</span>
-          <span>·</span>
-          <span>GSTIN Verified</span>
-        </div>
       </div>
     </div>
   </footer>
@@ -130,12 +98,6 @@
 
 <script setup lang="ts">
 const year = new Date().getFullYear()
-const email = ref('')
-const subscribed = ref(false)
-
-function onSubscribe() {
-  subscribed.value = true
-}
 
 const socials = [
   { label: 'Instagram', short: 'Ig', href: '#' },
@@ -143,8 +105,6 @@ const socials = [
   { label: 'Pinterest', short: 'Pin', href: '#' },
   { label: 'YouTube', short: 'Yt', href: '#' },
 ]
-
-const payments = ['Visa', 'Mastercard', 'UPI', 'RuPay', 'COD']
 
 const usefulLinks = [
   { label: 'Chandeliers', to: '/lighting/chandeliers' },
