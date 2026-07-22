@@ -116,6 +116,13 @@
             {{ pay }}
           </span>
         </div>
+        <div class="flex flex-wrap justify-center gap-3 text-xs text-white/60 lg:justify-end">
+          <span>Secure Payment</span>
+          <span>·</span>
+          <span>Trusted Shipping</span>
+          <span>·</span>
+          <span>GSTIN Verified</span>
+        </div>
       </div>
     </div>
   </footer>

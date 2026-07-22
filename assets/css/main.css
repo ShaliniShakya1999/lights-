@@ -91,7 +91,7 @@
   }
 
   .luxury-card:hover {
-    @apply -translate-y-2.5 shadow-luxury-hover border-accent/30;
+    @apply -translate-y-3 shadow-luxury-hover border-accent/40;
   }
 
   .luxury-card:hover::after {

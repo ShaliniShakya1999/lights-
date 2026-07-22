@@ -25,11 +25,11 @@
 
 <script setup lang="ts">
 const images = [
-  '/homepages/a1.jpg',
-  '/homepages/b2.jpg',
   '/homepages/c3.jpg',
   '/homepages/d4.jpg',
-  '/homepages/e5.jpg',
-  '/homepages/f6.jpg',
+  '/homepages/slider_new1.jpg',
+  '/5.jpeg',
+  '/9.jpeg',
+  '/25.jpeg',
 ]
 </script>

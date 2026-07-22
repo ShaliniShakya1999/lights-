@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between" data-animate="fade-up">
         <div class="max-w-2xl">
-          <p class="section-label">Testimonials</p>
+          <p class="section-label">Customer Reviews</p>
           <h2 class="mt-3 heading-section">What Our Clients Say</h2>
           <p class="body-lead mt-4">
             Real feedback from homes and projects lit with DINMANS.

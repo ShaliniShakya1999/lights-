@@ -35,13 +35,13 @@ const categories = productCategories
           >
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-all duration-500 group-hover:from-black/90 group-hover:via-black/40" />
           <div class="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-            <h3 class="font-playfair text-xl text-white sm:text-2xl">{{ item.title }}</h3>
-            <p class="mt-1.5 text-xs tracking-wide text-white/60">
+            <h3 class="heading-card text-white">{{ item.title }}</h3>
+            <p class="mt-1.5 text-sm tracking-wide text-white/65">
               {{ item.count }} Products
             </p>
-            <span class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-white/75 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-accent">
+            <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white/80 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-accent">
               Explore
-              <ArrowRight :size="14" class="transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight :size="15" class="transition-transform duration-300 group-hover:translate-x-1" />
             </span>
           </div>
         </NuxtLink>

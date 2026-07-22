@@ -1,7 +1,7 @@
 <template>
   <section
     ref="sectionRef"
-    class="relative flex min-h-[100svh] items-center overflow-hidden bg-secondary"
+    class="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-secondary"
   >
     <div
       class="absolute inset-[-12%] will-change-transform"
@@ -22,43 +22,43 @@
       </div>
     </div>
 
-    <!-- ~35% dark overlay -->
-    <div class="absolute inset-0 bg-black/35" />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/55" />
+    <!-- Stronger premium overlay -->
+    <div class="absolute inset-0 bg-black/40" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
 
-    <div class="relative z-10 mx-auto w-full max-w-[1440px] px-4 pb-28 pt-32 text-center sm:px-6 lg:px-10 lg:pb-32 lg:pt-36">
+    <div class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center px-4 py-32 text-center sm:px-6 lg:px-10">
       <p
-        class="section-label !text-accent tracking-[0.35em] hero-fade"
+        class="section-label !text-accent tracking-[0.38em] hero-fade"
         style="animation-delay: 0.05s"
       >
         DINMANS Design Studio
       </p>
       <h1
-        class="heading-hero mx-auto mt-6 text-white hero-fade"
+        class="heading-hero mx-auto mt-7 max-w-5xl font-semibold text-white hero-fade"
         style="animation-delay: 0.15s"
       >
         Illuminate Every Corner with Luxury Lighting
       </h1>
       <p
-        class="body-lead mx-auto mt-6 max-w-2xl !text-white/80 hero-fade"
+        class="body-lead mx-auto mt-7 max-w-2xl !text-white/85 hero-fade"
         style="animation-delay: 0.28s"
       >
         Discover handcrafted chandeliers, pendant lights and designer lamps.
       </p>
       <div
-        class="mt-10 flex flex-wrap items-center justify-center gap-4 hero-fade"
+        class="mt-11 flex flex-wrap items-center justify-center gap-4 hero-fade"
         style="animation-delay: 0.4s"
       >
         <NuxtLink
           to="/lighting/chandeliers"
-          class="btn-primary shadow-gold min-w-[160px]"
+          class="btn-primary hero-cta min-w-[180px] !px-10 !py-4 !text-base shadow-gold"
           @click="ripple"
         >
           Shop Collection
         </NuxtLink>
         <NuxtLink
           to="/lighting/lamps"
-          class="btn-secondary !border-white/85 !text-white hover:!bg-white hover:!text-secondary min-w-[160px]"
+          class="btn-secondary min-w-[180px] !border-2 !border-white/90 !px-10 !py-4 !text-base !text-white hover:!bg-white hover:!text-secondary"
           @click="ripple"
         >
           Explore Catalog
@@ -151,7 +151,7 @@ onMounted(() => {
 }
 
 @keyframes heroKenburns {
-  from { transform: scale(1.1); }
+  from { transform: scale(1.12); }
   to { transform: scale(1); }
 }
 
@@ -169,6 +169,15 @@ onMounted(() => {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.hero-cta {
+  animation: ctaPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 12px 28px rgba(232, 120, 42, 0.35); }
+  50% { box-shadow: 0 14px 36px rgba(232, 120, 42, 0.55); }
 }
 
 .scroll-line {

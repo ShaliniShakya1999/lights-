@@ -16,12 +16,12 @@
           :src="product.images[0]"
           :alt="product.name"
           class="h-full w-full object-cover transition-all duration-700 ease-out"
-          :class="hovered && product.hoverImage ? 'opacity-0 scale-105' : 'opacity-100 scale-100 group-hover:scale-105'"
+          :class="hovered && secondaryImage ? 'opacity-0 scale-105' : 'opacity-100 scale-100 group-hover:scale-105'"
           loading="lazy"
         >
         <img
-          v-if="product.hoverImage"
-          :src="product.hoverImage"
+          v-if="secondaryImage"
+          :src="secondaryImage"
           :alt="`${product.name} alternate`"
           class="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-out"
           :class="hovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'"
@@ -33,7 +33,7 @@
         <span
           v-for="(badge, bi) in visibleBadges"
           :key="badge"
-          class="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider shadow-soft transition-transform duration-300"
+          class="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider shadow-soft"
           :class="badgeClass(badge)"
           :style="{ transitionDelay: `${bi * 40}ms` }"
         >
@@ -47,23 +47,40 @@
         </span>
       </div>
 
-      <div class="absolute right-3 top-3 z-10 flex flex-col gap-2 opacity-100 sm:opacity-0 sm:translate-x-3 sm:group-hover:opacity-100 sm:group-hover:translate-x-0 transition-all duration-500 ease-out">
-        <button type="button" class="icon-btn flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-soft text-text hover:text-[#C45C6A]" :class="{ 'animate-heart-pop !text-[#C45C6A]': wishlisted }" :aria-label="wishlisted ? 'Remove wishlist' : 'Wishlist'" @click.stop="onWishlist">
-          <Heart :size="15" :fill="wishlisted ? 'currentColor' : 'none'" />
+      <div class="absolute right-3 top-3 z-10 flex flex-col gap-2 opacity-100 translate-x-0 sm:opacity-0 sm:translate-x-2 sm:group-hover:opacity-100 sm:group-hover:translate-x-0 transition-all duration-400 ease-out">
+        <button
+          type="button"
+          class="icon-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-[#C45C6A]"
+          :class="{ 'animate-heart-pop !text-[#C45C6A]': wishlisted }"
+          :aria-label="wishlisted ? 'Remove wishlist' : 'Wishlist'"
+          @click.stop="onWishlist"
+        >
+          <Heart :size="16" :fill="wishlisted ? 'currentColor' : 'none'" />
         </button>
-        <button type="button" class="icon-btn flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-soft text-text hover:text-accent" :class="{ '!text-accent': compared }" aria-label="Compare" @click.stop="onCompare">
-          <GitCompareArrows :size="15" />
+        <button
+          type="button"
+          class="icon-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-accent"
+          aria-label="Quick view"
+          @click.stop="$emit('quickView', product)"
+        >
+          <Eye :size="16" />
         </button>
-        <button type="button" class="icon-btn flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-soft text-text hover:text-accent" aria-label="Quick view" @click.stop="$emit('quickView', product)">
-          <Eye :size="15" />
+        <button
+          type="button"
+          class="icon-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-accent"
+          :class="{ '!text-accent': compared }"
+          aria-label="Compare"
+          @click.stop="onCompare"
+        >
+          <GitCompareArrows :size="16" />
         </button>
       </div>
 
-      <div class="absolute inset-x-3 bottom-3 z-10 flex gap-2 opacity-100 sm:opacity-0 sm:translate-y-4 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-500 ease-out">
-        <button type="button" class="btn-primary flex-1 !py-2.5 !text-xs" @click.stop="onAdd($event)">
-          Add Cart
+      <div class="absolute inset-x-3 bottom-3 z-10 flex gap-2 opacity-100 sm:opacity-0 sm:translate-y-3 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-400 ease-out">
+        <button type="button" class="btn-primary flex-1 !py-2.5 !text-sm" @click.stop="onAdd($event)">
+          Add to Cart
         </button>
-        <button type="button" class="btn-ghost flex-1 !py-2.5 !text-xs !bg-white/95" @click.stop="onQuote">
+        <button type="button" class="btn-ghost flex-1 !py-2.5 !text-sm !bg-white/95" @click.stop="onQuote">
           Quote
         </button>
       </div>
@@ -72,7 +89,7 @@
     <div class="flex flex-1 flex-col p-4 sm:p-5" :class="list ? 'justify-center' : ''">
       <p class="text-[11px] uppercase tracking-[0.18em] text-text-muted">{{ product.brand }}</p>
       <NuxtLink :to="`/product/${product.slug}`">
-        <h3 class="mt-1.5 font-playfair text-lg leading-snug text-text transition-colors hover:text-accent line-clamp-2">
+        <h3 class="mt-1.5 font-playfair text-lg leading-snug text-text transition-colors hover:text-accent line-clamp-2 sm:text-xl">
           {{ product.name }}
         </h3>
       </NuxtLink>
@@ -82,21 +99,24 @@
           <Star
             v-for="n in 5"
             :key="n"
-            :size="12"
+            :size="13"
             :fill="n <= Math.round(product.rating) ? 'currentColor' : 'none'"
             :class="n <= Math.round(product.rating) ? '' : 'text-border'"
           />
         </div>
-        <span class="text-xs text-text-muted">{{ product.rating }} ({{ product.reviewCount }})</span>
+        <span class="text-xs text-text-muted sm:text-sm">
+          {{ product.rating }}
+          <span class="text-text-muted/80">({{ product.reviewCount }} reviews)</span>
+        </span>
       </div>
 
       <div class="mt-3 flex flex-wrap items-baseline gap-2">
-        <span class="text-lg font-medium text-text">{{ formatPrice(product.price) }}</span>
+        <span class="text-lg font-semibold text-text sm:text-xl">{{ formatPrice(product.price) }}</span>
         <span v-if="product.oldPrice" class="text-sm text-text-muted line-through">
           {{ formatPrice(product.oldPrice) }}
         </span>
       </div>
-      <p v-if="savings" class="mt-1 text-xs font-medium text-accent">{{ savings }}</p>
+      <p v-if="savings" class="mt-1 text-xs font-medium text-accent sm:text-sm">{{ savings }}</p>
 
       <p v-if="list" class="mt-3 line-clamp-2 text-sm text-text-muted">{{ product.description }}</p>
 
@@ -104,7 +124,7 @@
         <span
           v-for="color in product.colors.slice(0, 4)"
           :key="color.name"
-          class="h-4 w-4 rounded-full border border-border"
+          class="h-4 w-4 rounded-full border border-border ring-offset-1 transition group-hover:ring-1 group-hover:ring-accent/40"
           :style="{ backgroundColor: color.hex }"
           :title="color.name"
         />
@@ -142,6 +162,7 @@ const wishlisted = computed(() => wishlist.has(props.product.id))
 const compared = computed(() => compare.has(props.product.id))
 const savings = computed(() => formatSavings(props.product.price, props.product.oldPrice))
 const visibleBadges = computed(() => props.product.badges.slice(0, 2))
+const secondaryImage = computed(() => props.product.hoverImage || props.product.images[1] || null)
 const discountPercent = computed(() => {
   if (!props.product.oldPrice || props.product.oldPrice <= props.product.price) return null
   return Math.round(((props.product.oldPrice - props.product.price) / props.product.oldPrice) * 100)
