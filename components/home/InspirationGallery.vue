@@ -2,7 +2,7 @@
   <section class="bg-background py-20 lg:py-24">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mx-auto max-w-2xl text-center" data-animate="fade-up">
-        <p class="section-label">RIF Gallery</p>
+        <p class="section-label">Gallery</p>
         <h2 class="mt-3 heading-section">Product Stories</h2>
         <p class="body-lead mt-3">
           Handpicked DINMANS lighting designs — warm glow, foldable craft, and sculptural light.

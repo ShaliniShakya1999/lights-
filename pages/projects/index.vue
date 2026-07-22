@@ -4,13 +4,13 @@
       <div class="absolute inset-0">
         <img
           src="/25.jpeg"
-          alt="RIF Gallery"
+          alt="Gallery"
           class="h-full w-full object-cover opacity-40"
         >
         <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/40" />
       </div>
       <div class="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
-        <p class="section-label !text-accent">RIF Gallery</p>
+        <p class="section-label !text-accent">Gallery</p>
         <h1 class="heading-hero mt-4 max-w-3xl text-white">
           Lighting designs that inspire every space
         </h1>
@@ -122,7 +122,7 @@ import { rifGalleryItems } from '~/data/rif-gallery'
 definePageMeta({ layout: 'website' })
 
 useSeoMeta({
-  title: 'RIF Gallery | DINMANS',
+  title: 'Gallery | DINMANS',
   description: 'Browse curated DINMANS lighting product stories — foldable lamps, crystal glow, and ambient designs.',
 })
 

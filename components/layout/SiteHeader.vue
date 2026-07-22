@@ -4,13 +4,12 @@
     :class="headerClass"
   >
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-      <div class="flex h-16 lg:h-[76px] items-center justify-between gap-4">
+      <div class="flex h-[72px] lg:h-[84px] items-center justify-between gap-4">
         <NuxtLink to="/" class="group flex items-center shrink-0" aria-label="DINMANS home">
           <img
-            src="/logo.png"
+            :src="overHero ? '/wite.png' : '/logo.png'"
             alt="DINMANS — Inspiring All"
-            class="h-10 w-auto sm:h-11 transition-transform duration-luxury group-hover:scale-[1.03]"
-            :class="overHero ? 'brightness-110' : ''"
+            class="h-12 w-auto sm:h-14 lg:h-[3.75rem] transition-transform duration-luxury group-hover:scale-[1.03]"
           >
         </NuxtLink>
 
@@ -22,7 +21,7 @@
           >
             <button
               type="button"
-              class="nav-link-anim whitespace-nowrap rounded-full px-3 py-2 text-[11px] tracking-wide uppercase transition-colors duration-300"
+              class="nav-link-anim whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold tracking-[0.12em] uppercase transition-colors duration-300"
               :class="navTextClass"
             >
               Products
@@ -58,8 +57,8 @@
             v-for="link in navLinks"
             :key="link.label"
             :to="link.to"
-            class="nav-link-anim whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] tracking-wide uppercase transition-colors duration-300"
-            :class="[navTextClass, isActive(link) ? 'is-active !text-accent font-medium' : '']"
+            class="nav-link-anim whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold tracking-[0.12em] uppercase transition-colors duration-300"
+            :class="[navTextClass, isActive(link) ? 'is-active !text-accent' : '']"
           >
             {{ link.label }}
           </NuxtLink>
@@ -259,7 +258,9 @@ const headerClass = computed(() => {
 })
 
 const navTextClass = computed(() =>
-  overHero.value ? 'text-white/80 hover:text-accent' : 'text-text-muted hover:text-accent',
+  overHero.value
+    ? 'text-white font-semibold hover:text-accent drop-shadow-sm'
+    : 'text-text font-semibold hover:text-accent',
 )
 
 const iconBtnClass = computed(() =>
@@ -271,7 +272,7 @@ const iconBtnClass = computed(() =>
 const navLinks = [
   { label: 'About Us', to: '/about', match: '/about' },
   { label: 'Contact', to: '/contact', match: '/contact' },
-  { label: 'RIF Gallery', to: '/projects', match: '/projects' },
+  { label: 'Gallery', to: '/projects', match: '/projects' },
 ]
 
 const megaCategories = productCategories.map(cat => ({

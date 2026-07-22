@@ -20,7 +20,7 @@
       <div class="max-w-lg text-white">
         <p class="section-label !text-accent" data-animate="fade-up">Interior Stories</p>
         <h2
-          class="mt-4 heading-section text-white"
+          class="mt-4 heading-section !text-white"
           data-animate="fade-up"
           data-delay="0.1"
         >

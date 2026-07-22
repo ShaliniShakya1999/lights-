@@ -16,7 +16,7 @@
         <!-- Brand + Contact -->
         <div class="lg:col-span-4" data-animate="fade-up">
           <NuxtLink to="/" class="inline-flex" aria-label="DINMANS home">
-            <img src="/logo.png" alt="DINMANS" class="h-11 w-auto brightness-110">
+            <img src="/wite.png" alt="DINMANS" class="h-11 w-auto sm:h-12">
           </NuxtLink>
           <h4 class="mt-8 text-base font-semibold tracking-wide text-white">Contact us</h4>
           <ul class="mt-4 space-y-3 text-base text-white/80">

@@ -17,7 +17,7 @@
     <div class="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="max-w-2xl text-white" data-animate="fade-up">
         <p class="section-label !text-accent">Luxury Collection</p>
-        <h2 class="mt-4 heading-section lg:text-6xl text-balance">
+        <h2 class="mt-4 heading-section lg:text-6xl !text-white text-balance">
           Statement pieces for extraordinary rooms
         </h2>
         <p class="body-lead mt-5 !text-white/70">
