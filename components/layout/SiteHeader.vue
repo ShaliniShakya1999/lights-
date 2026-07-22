@@ -3,13 +3,18 @@
     class="fixed inset-x-0 top-0 z-50 transition-all duration-500"
     :class="headerClass"
   >
-    <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
-      <div class="flex items-center justify-between gap-4 transition-[height] duration-500 ease-out" :class="navBarHeight">
+    <div class="mx-auto max-w-[1440px] px-3 xs:px-4 sm:px-6 lg:px-10">
+      <div
+        class="flex items-center justify-between gap-2 xs:gap-3 sm:gap-4 transition-[height] duration-500 ease-out"
+        :class="navBarHeight"
+      >
         <NuxtLink to="/" class="group flex items-center shrink-0" aria-label="DINMANS home">
           <img
             :src="overHero ? '/wite.png' : '/logo.png'"
             alt="DINMANS — Inspiring All"
-            class="h-12 w-auto sm:h-14 lg:h-[3.75rem] transition-transform duration-luxury group-hover:scale-[1.03]"
+            class="h-9 w-auto xs:h-10 sm:h-12 lg:h-14 transition-transform duration-luxury group-hover:scale-[1.03]"
+            width="160"
+            height="56"
           >
         </NuxtLink>
 
@@ -23,16 +28,18 @@
               type="button"
               class="nav-link-anim whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold tracking-[0.12em] uppercase transition-colors duration-300"
               :class="navTextClass"
+              :aria-expanded="megaOpen"
+              aria-haspopup="true"
             >
               Products
             </button>
             <Transition name="mega">
               <div
                 v-if="megaOpen"
-                class="absolute left-1/2 top-full z-50 w-[720px] -translate-x-1/2 pt-3"
+                class="absolute left-1/2 top-full z-50 w-[min(720px,calc(100vw-2rem))] -translate-x-1/2 pt-3"
               >
-                <div class="rounded-3xl border border-border bg-white p-6 shadow-luxury">
-                  <div class="grid grid-cols-4 gap-4">
+                <div class="rounded-3xl border border-border bg-white p-4 sm:p-6 shadow-luxury">
+                  <div class="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
                     <NuxtLink
                       v-for="cat in megaCategories"
                       :key="cat.title"
@@ -41,10 +48,15 @@
                       @click="megaOpen = false"
                     >
                       <div class="aspect-[4/3] overflow-hidden rounded-xl bg-background">
-                        <img :src="cat.image" :alt="cat.title" class="h-full w-full object-cover transition-transform duration-500 group-hover/item:scale-105">
+                        <img
+                          :src="cat.image"
+                          :alt="cat.title"
+                          class="h-full w-full object-cover transition-transform duration-500 group-hover/item:scale-105"
+                          loading="lazy"
+                        >
                       </div>
                       <p class="mt-3 text-sm font-medium text-text">{{ cat.title }}</p>
-                      <p class="mt-0.5 text-[11px] text-text-muted">{{ cat.subtitle }}</p>
+                      <p class="mt-0.5 text-[11px] text-text-muted line-clamp-1">{{ cat.subtitle }}</p>
                       <p class="mt-1 text-[11px] text-accent">{{ cat.count }}</p>
                     </NuxtLink>
                   </div>
@@ -64,10 +76,10 @@
           </NuxtLink>
         </nav>
 
-        <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+        <div class="flex items-center gap-1.5 xs:gap-2 sm:gap-2.5 shrink-0">
           <button
             type="button"
-            class="hidden sm:flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-luxury"
+            class="flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-luxury"
             :class="iconBtnClass"
             aria-label="Search"
             @click="searchOpen = true"
@@ -76,7 +88,7 @@
           </button>
           <NuxtLink
             to="/wishlist"
-            class="relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 hover:scale-110"
+            class="relative flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 hover:scale-110"
             :class="iconBtnClass"
             aria-label="Wishlist"
           >
@@ -90,7 +102,7 @@
           </NuxtLink>
           <button
             type="button"
-            class="relative hidden sm:flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-luxury"
+            class="relative hidden sm:flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-luxury"
             :class="[iconBtnClass, compare.ids.value.length ? '!border-accent !text-accent' : '']"
             aria-label="Compare"
           >
@@ -106,7 +118,7 @@
           <div class="relative" @mouseenter="cartPreview = true" @mouseleave="cartPreview = false">
             <NuxtLink
               to="/cart"
-              class="relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-luxury"
+              class="relative flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-luxury"
               :class="iconBtnClass"
               aria-label="Cart"
             >
@@ -121,13 +133,13 @@
             <Transition name="mega">
               <div
                 v-if="cartPreview && cart.lines.value.length"
-                class="absolute right-0 top-full z-50 w-80 pt-3"
+                class="absolute right-0 top-full z-50 w-[min(20rem,calc(100vw-1.5rem))] pt-3"
               >
                 <div class="rounded-3xl border border-border bg-white p-4 shadow-luxury">
                   <p class="text-sm font-medium text-text">Cart ({{ cart.count.value }})</p>
                   <ul class="mt-3 max-h-56 space-y-3 overflow-y-auto scrollbar-thin">
                     <li v-for="line in cart.lines.value.slice(0, 4)" :key="`${line.productId}-${line.color}`" class="flex gap-3">
-                      <img :src="line.product.images[0]" :alt="line.product.name" class="h-14 w-14 rounded-xl object-cover">
+                      <img :src="line.product.images[0]" :alt="line.product.name" class="h-14 w-14 rounded-xl object-cover shrink-0">
                       <div class="min-w-0 flex-1">
                         <p class="truncate text-sm text-text">{{ line.product.name }}</p>
                         <p class="mt-0.5 text-xs text-text-muted">Qty {{ line.qty }} · {{ formatPrice(line.lineTotal) }}</p>
@@ -149,8 +161,9 @@
 
           <button
             type="button"
-            class="xl:hidden flex h-10 w-10 items-center justify-center rounded-full border"
+            class="xl:hidden flex h-11 w-11 items-center justify-center rounded-full border"
             :class="iconBtnClass"
+            :aria-expanded="mobileOpen"
             aria-label="Menu"
             @click="mobileOpen = !mobileOpen"
           >
@@ -161,53 +174,90 @@
       </div>
     </div>
 
-    <Transition name="slide-fade">
-      <div v-if="mobileOpen" class="xl:hidden border-t border-border bg-white">
-        <nav class="mx-auto max-w-[1440px] px-4 py-4 flex flex-col gap-1">
-          <p class="px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-text-muted">Products</p>
-          <NuxtLink
-            v-for="cat in megaCategories"
-            :key="cat.title"
-            :to="cat.to"
-            class="rounded-2xl px-4 py-3 text-sm text-text hover:bg-accent-soft hover:text-accent"
+    <Teleport to="body">
+      <Transition name="mobile-drawer">
+        <div
+          v-if="mobileOpen"
+          class="fixed inset-0 z-[80] xl:hidden"
+        >
+          <button
+            type="button"
+            class="absolute inset-0 bg-black/45 backdrop-blur-sm"
+            aria-label="Close menu"
             @click="mobileOpen = false"
+          />
+          <div
+            class="drawer-panel absolute inset-y-0 right-0 flex w-[min(22rem,100%)] flex-col bg-white shadow-luxury"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
           >
-            {{ cat.title }}
-          </NuxtLink>
-          <NuxtLink
-            v-for="link in navLinks"
-            :key="link.label"
-            :to="link.to"
-            class="rounded-2xl px-4 py-3 text-sm uppercase tracking-wide text-text hover:bg-accent-soft hover:text-accent"
-            @click="mobileOpen = false"
-          >
-            {{ link.label }}
-          </NuxtLink>
-        </nav>
-      </div>
-    </Transition>
+            <div class="flex items-center justify-between border-b border-border px-5 py-4">
+              <img src="/logo.png" alt="DINMANS" class="h-9 w-auto">
+              <button
+                type="button"
+                class="flex h-11 w-11 items-center justify-center rounded-full border border-border"
+                aria-label="Close menu"
+                @click="mobileOpen = false"
+              >
+                <X :size="18" />
+              </button>
+            </div>
+            <nav class="flex-1 overflow-y-auto px-3 py-4 scrollbar-thin">
+              <p class="px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-text-muted">Products</p>
+              <NuxtLink
+                v-for="cat in megaCategories"
+                :key="cat.title"
+                :to="cat.to"
+                class="flex min-h-11 items-center rounded-2xl px-3 py-3 text-sm text-text hover:bg-accent-soft hover:text-accent"
+                @click="mobileOpen = false"
+              >
+                {{ cat.title }}
+              </NuxtLink>
+              <div class="my-3 border-t border-border" />
+              <NuxtLink
+                v-for="link in navLinks"
+                :key="link.label"
+                :to="link.to"
+                class="flex min-h-11 items-center rounded-2xl px-3 py-3 text-sm uppercase tracking-wide text-text hover:bg-accent-soft hover:text-accent"
+                @click="mobileOpen = false"
+              >
+                {{ link.label }}
+              </NuxtLink>
+              <button
+                type="button"
+                class="mt-2 flex min-h-11 w-full items-center gap-2 rounded-2xl px-3 py-3 text-left text-sm text-text hover:bg-accent-soft hover:text-accent"
+                @click="openSearchFromMenu"
+              >
+                <Search :size="16" />
+                Search
+              </button>
+            </nav>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
 
-    <!-- Search popup -->
     <Teleport to="body">
       <Transition name="modal">
         <div
           v-if="searchOpen"
-          class="fixed inset-0 z-[90] flex items-start justify-center bg-black/45 px-4 pt-[12vh] backdrop-blur-sm"
+          class="fixed inset-0 z-[90] flex items-start justify-center bg-black/45 px-3 pt-[10vh] backdrop-blur-sm xs:px-4 sm:pt-[12vh]"
           @click.self="searchOpen = false"
         >
-          <div class="modal-panel w-full max-w-xl rounded-3xl bg-white p-6 shadow-luxury">
+          <div class="modal-panel w-full max-w-xl rounded-2xl bg-white p-4 shadow-luxury sm:rounded-3xl sm:p-6">
             <div class="flex items-center gap-3 rounded-2xl border border-border px-4 py-3">
-              <Search :size="18" class="text-text-muted" />
+              <Search :size="18" class="shrink-0 text-text-muted" />
               <input
                 ref="searchInput"
                 v-model="searchQuery"
                 type="search"
                 placeholder="Search lighting, brands, rooms…"
-                class="w-full bg-transparent text-sm outline-none"
+                class="w-full min-w-0 bg-transparent text-sm outline-none"
                 @keydown.esc="searchOpen = false"
               >
             </div>
-            <div v-if="searchResults.length" class="mt-4 space-y-2">
+            <div v-if="searchResults.length" class="mt-4 max-h-[50vh] space-y-2 overflow-y-auto scrollbar-thin">
               <NuxtLink
                 v-for="p in searchResults"
                 :key="p.id"
@@ -215,9 +265,9 @@
                 class="flex items-center gap-3 rounded-2xl p-2 transition-colors hover:bg-accent-soft"
                 @click="searchOpen = false"
               >
-                <img :src="p.images[0]" :alt="p.name" class="h-12 w-12 rounded-xl object-cover">
-                <div>
-                  <p class="text-sm font-medium">{{ p.name }}</p>
+                <img :src="p.images[0]" :alt="p.name" class="h-12 w-12 shrink-0 rounded-xl object-cover">
+                <div class="min-w-0">
+                  <p class="truncate text-sm font-medium">{{ p.name }}</p>
                   <p class="text-xs text-text-muted">{{ formatPrice(p.price) }}</p>
                 </div>
               </NuxtLink>
@@ -253,14 +303,14 @@ const isHome = computed(() => route.path === '/')
 const overHero = computed(() => isHome.value && !scrolled.value)
 
 const headerClass = computed(() => {
-  if (overHero.value) return 'bg-transparent border-b border-transparent py-0'
-  return 'bg-white/85 backdrop-blur-2xl border-b border-border/80 shadow-glass'
+  if (overHero.value) return 'bg-transparent border-b border-transparent'
+  return 'bg-white/90 backdrop-blur-2xl border-b border-border/80 shadow-glass'
 })
 
 const navBarHeight = computed(() =>
   scrolled.value
-    ? 'h-[64px] lg:h-[72px]'
-    : 'h-[72px] lg:h-[84px]',
+    ? 'h-14 sm:h-16 lg:h-[72px]'
+    : 'h-16 sm:h-[72px] lg:h-[84px]',
 )
 
 const navTextClass = computed(() =>
@@ -301,6 +351,23 @@ function isActive(link: (typeof navLinks)[number]) {
   return route.path === link.match || route.path.startsWith(`${link.match}/`)
 }
 
+function openSearchFromMenu() {
+  mobileOpen.value = false
+  searchOpen.value = true
+}
+
+watch(() => route.fullPath, () => {
+  mobileOpen.value = false
+  megaOpen.value = false
+  searchOpen.value = false
+})
+
+watch(mobileOpen, (open) => {
+  if (import.meta.client) {
+    document.body.style.overflow = open ? 'hidden' : ''
+  }
+})
+
 watch(searchOpen, async (open) => {
   if (open) {
     await nextTick()
@@ -317,7 +384,10 @@ onMounted(() => {
   }
   onScroll()
   window.addEventListener('scroll', onScroll, { passive: true })
-  onUnmounted(() => window.removeEventListener('scroll', onScroll))
+  onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll)
+    document.body.style.overflow = ''
+  })
 })
 </script>
 
@@ -330,5 +400,22 @@ onMounted(() => {
 .mega-leave-to {
   opacity: 0;
   transform: translateY(8px);
+}
+
+.mobile-drawer-enter-active,
+.mobile-drawer-leave-active {
+  transition: opacity 0.3s ease;
+}
+.mobile-drawer-enter-active .drawer-panel,
+.mobile-drawer-leave-active .drawer-panel {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.mobile-drawer-enter-from,
+.mobile-drawer-leave-to {
+  opacity: 0;
+}
+.mobile-drawer-enter-from .drawer-panel,
+.mobile-drawer-leave-to .drawer-panel {
+  transform: translateX(100%);
 }
 </style>

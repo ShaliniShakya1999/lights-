@@ -5,7 +5,7 @@
         v-for="tab in tabs"
         :key="tab.id"
         type="button"
-        class="shrink-0 px-6 py-4 text-sm font-medium transition-all duration-luxury border-b-2 -mb-px"
+        class="shrink-0 px-4 py-3.5 text-xs font-medium transition-all duration-luxury border-b-2 -mb-px min-h-11 sm:px-6 sm:py-4 sm:text-sm"
         :class="active === tab.id
           ? 'border-accent text-accent'
           : 'border-transparent text-text-muted hover:text-text'"
@@ -15,7 +15,7 @@
       </button>
     </div>
 
-    <div class="p-6 sm:p-8 lg:p-10">
+    <div class="p-4 xs:p-6 sm:p-8 lg:p-10">
       <div v-if="active === 'description'" class="max-w-3xl space-y-6 animate-[fadeIn_0.35s_ease]">
         <p class="text-base leading-relaxed text-text-muted">{{ product.description }}</p>
         <ul class="space-y-3">

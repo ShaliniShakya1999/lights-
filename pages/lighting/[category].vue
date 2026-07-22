@@ -11,7 +11,7 @@
 
       <div id="products" class="mt-8 scroll-mt-28 lg:mt-10">
         <div
-          class="sticky top-[72px] z-30 -mx-4 bg-background/90 px-4 py-3 backdrop-blur-xl sm:mx-0 sm:rounded-none sm:px-0 lg:top-[84px]"
+          class="sticky top-14 z-30 -mx-4 bg-background/90 px-4 py-3 backdrop-blur-xl sm:top-16 sm:mx-0 sm:rounded-none sm:px-0 lg:top-[72px]"
           data-animate="fade-up"
         >
           <ShopProductToolbar
@@ -74,9 +74,9 @@
       </div>
     </div>
 
-    <!-- Mobile bottom sheet triggers -->
-    <div class="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-border bg-white/95 p-3 backdrop-blur-xl lg:hidden">
-      <button type="button" class="btn-secondary flex-1 !py-3" @click="filterOpen = true">
+    <!-- Mobile / tablet bottom sheet triggers -->
+    <div class="fixed inset-x-0 bottom-0 z-40 flex gap-2 border-t border-border bg-white/95 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-xl lg:hidden">
+      <button type="button" class="btn-secondary min-h-12 flex-1 !py-3 !text-sm" @click="filterOpen = true">
         <SlidersHorizontal :size="16" />
         Filter
         <span
@@ -88,7 +88,7 @@
       </button>
       <select
         :value="sortBy"
-        class="input-luxury flex-1 !rounded-full !py-3 cursor-pointer"
+        class="input-luxury min-w-0 flex-1 !rounded-full !py-3 cursor-pointer text-sm"
         @change="sortBy = ($event.target as HTMLSelectElement).value as SortOption"
       >
         <option value="featured">Featured</option>

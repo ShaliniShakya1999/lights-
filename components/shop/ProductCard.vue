@@ -1,7 +1,7 @@
 <template>
   <article
-    class="group luxury-card overflow-hidden card-reveal"
-    :class="list ? 'sm:flex sm:flex-row' : ''"
+    class="group luxury-card flex h-full flex-col overflow-hidden card-reveal"
+    :class="list ? 'sm:flex-row' : ''"
     data-animate-child
     :style="{ animationDelay: `${Math.min(index, 8) * 0.07}s` }"
   >
@@ -29,11 +29,11 @@
         >
       </NuxtLink>
 
-      <div class="absolute left-3 top-3 z-10 flex flex-col gap-1.5">
+      <div class="absolute left-2 top-2 z-10 flex max-w-[70%] flex-col gap-1 xs:left-3 xs:top-3 xs:gap-1.5">
         <span
           v-for="(badge, bi) in visibleBadges"
           :key="badge"
-          class="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider shadow-soft"
+          class="w-fit rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider shadow-soft xs:px-2.5 xs:py-1 xs:text-[10px]"
           :class="badgeClass(badge)"
           :style="{ transitionDelay: `${bi * 40}ms` }"
         >
@@ -41,16 +41,16 @@
         </span>
         <span
           v-if="discountPercent"
-          class="rounded-full bg-[#9B2226] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white shadow-soft"
+          class="w-fit rounded-full bg-[#9B2226] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white shadow-soft xs:px-2.5 xs:py-1 xs:text-[10px]"
         >
           {{ discountPercent }}% Off
         </span>
       </div>
 
-      <div class="absolute right-3 top-3 z-10 flex flex-col gap-2 opacity-100 max-sm:pointer-events-auto sm:opacity-0 sm:translate-y-1 sm:pointer-events-none sm:group-hover:pointer-events-auto sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+      <div class="absolute right-2 top-2 z-10 flex flex-col gap-1.5 opacity-100 xs:right-3 xs:top-3 xs:gap-2 max-sm:pointer-events-auto sm:opacity-0 sm:translate-y-1 sm:pointer-events-none sm:group-hover:pointer-events-auto sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
         <button
           type="button"
-          class="icon-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-[#C45C6A]"
+          class="icon-btn flex h-9 w-9 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-[#C45C6A] sm:h-10 sm:w-10"
           :class="{ 'animate-heart-pop !text-[#C45C6A] !opacity-100': wishlisted }"
           :aria-label="wishlisted ? 'Remove wishlist' : 'Wishlist'"
           @click.stop="onWishlist"
@@ -59,7 +59,7 @@
         </button>
         <button
           type="button"
-          class="icon-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-accent"
+          class="icon-btn hidden h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-accent xs:flex"
           aria-label="Quick view"
           @click.stop="$emit('quickView', product)"
         >
@@ -67,7 +67,7 @@
         </button>
         <button
           type="button"
-          class="icon-btn flex h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-accent"
+          class="icon-btn hidden h-10 w-10 items-center justify-center rounded-full bg-white/95 shadow-luxury text-text hover:text-accent sm:flex"
           :class="{ '!text-accent': compared }"
           aria-label="Compare"
           @click.stop="onCompare"
@@ -76,62 +76,65 @@
         </button>
       </div>
 
-      <div class="absolute inset-x-3 bottom-3 z-10 flex gap-2 opacity-100 max-sm:pointer-events-auto sm:opacity-0 sm:translate-y-2 sm:pointer-events-none sm:group-hover:pointer-events-auto sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
-        <button type="button" class="btn-primary flex-1 !py-2.5 !text-sm" @click.stop="onAdd($event)">
+      <div class="absolute inset-x-2 bottom-2 z-10 flex gap-1.5 opacity-100 xs:inset-x-3 xs:bottom-3 xs:gap-2 max-sm:pointer-events-auto sm:opacity-0 sm:translate-y-2 sm:pointer-events-none sm:group-hover:pointer-events-auto sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300 ease-out">
+        <button type="button" class="btn-primary min-w-0 flex-1 !px-2 !py-2 !text-[11px] xs:!py-2.5 xs:!text-xs sm:!text-sm" @click.stop="onAdd($event)">
           Add to Cart
         </button>
-        <button type="button" class="btn-ghost flex-1 !py-2.5 !text-sm !bg-white/95" @click.stop="onQuote">
+        <button type="button" class="btn-ghost min-w-0 flex-1 !bg-white/95 !px-2 !py-2 !text-[11px] xs:!py-2.5 xs:!text-xs sm:!text-sm" @click.stop="onQuote">
           Quote
         </button>
       </div>
     </div>
 
-    <div class="flex flex-1 flex-col p-4 sm:p-5" :class="list ? 'justify-center' : ''">
-      <p class="text-[11px] uppercase tracking-[0.18em] text-text-muted">{{ product.brand }}</p>
-      <NuxtLink :to="`/product/${product.slug}`">
-        <h3 class="mt-1.5 font-playfair text-lg leading-snug text-text transition-colors hover:text-accent line-clamp-2 sm:text-xl">
+    <div class="flex flex-1 flex-col p-3 xs:p-4 sm:p-5" :class="list ? 'justify-center' : ''">
+      <p class="text-[10px] uppercase tracking-[0.18em] text-text-muted xs:text-[11px]">{{ product.brand }}</p>
+      <NuxtLink :to="`/product/${product.slug}`" class="mt-1.5">
+        <h3 class="font-playfair text-base leading-snug text-text transition-colors hover:text-accent line-clamp-2 xs:text-lg sm:text-xl">
           {{ product.name }}
         </h3>
       </NuxtLink>
 
-      <div class="mt-2.5 flex items-center gap-2">
-        <div class="flex items-center gap-0.5 text-accent">
+      <div class="mt-2 flex items-center gap-1.5 xs:mt-2.5 xs:gap-2">
+        <div class="flex shrink-0 items-center gap-0.5 text-accent">
           <Star
             v-for="n in 5"
             :key="n"
-            :size="13"
+            :size="12"
             :fill="n <= Math.round(product.rating) ? 'currentColor' : 'none'"
             :class="n <= Math.round(product.rating) ? '' : 'text-border'"
           />
         </div>
-        <span class="text-xs text-text-muted sm:text-sm">
+        <span class="truncate text-[11px] text-text-muted xs:text-xs sm:text-sm">
           {{ product.rating }}
-          <span class="text-text-muted/80">({{ product.reviewCount }} reviews)</span>
+          <span class="hidden text-text-muted/80 xs:inline">({{ product.reviewCount }})</span>
         </span>
       </div>
 
-      <div class="mt-3 flex flex-wrap items-baseline gap-2">
-        <span class="text-lg font-semibold text-text sm:text-xl">{{ formatPrice(product.price) }}</span>
-        <span v-if="product.oldPrice" class="text-sm text-text-muted line-through">
-          {{ formatPrice(product.oldPrice) }}
-        </span>
-      </div>
-      <p v-if="savings" class="mt-1 text-xs font-medium text-accent sm:text-sm">{{ savings }}</p>
+      <div class="mt-auto pt-3">
+        <div class="flex flex-wrap items-baseline gap-2">
+          <span class="text-base font-semibold text-text xs:text-lg sm:text-xl">{{ formatPrice(product.price) }}</span>
+          <span v-if="product.oldPrice" class="text-xs text-text-muted line-through xs:text-sm">
+            {{ formatPrice(product.oldPrice) }}
+          </span>
+        </div>
+        <p v-if="savings" class="mt-1 text-[11px] font-medium text-accent xs:text-xs sm:text-sm">{{ savings }}</p>
 
-      <p v-if="list" class="mt-3 line-clamp-2 text-sm text-text-muted">{{ product.description }}</p>
+        <p v-if="list" class="mt-3 line-clamp-2 text-sm text-text-muted">{{ product.description }}</p>
 
-      <div class="mt-3.5 flex items-center gap-1.5">
-        <span
-          v-for="color in product.colors.slice(0, 4)"
-          :key="color.name"
-          class="h-4 w-4 rounded-full border border-border ring-offset-1 transition group-hover:ring-1 group-hover:ring-accent/40"
-          :style="{ backgroundColor: color.hex }"
-          :title="color.name"
-        />
+        <div class="mt-3 flex items-center gap-1.5 xs:mt-3.5">
+          <span
+            v-for="color in product.colors.slice(0, 4)"
+            :key="color.name"
+            class="h-3.5 w-3.5 rounded-full border border-border ring-offset-1 transition group-hover:ring-1 group-hover:ring-accent/40 xs:h-4 xs:w-4"
+            :style="{ backgroundColor: color.hex }"
+            :title="color.name"
+          />
+        </div>
       </div>
     </div>
   </article>
 </template>
+
 
 <script setup lang="ts">
 import { Eye, GitCompareArrows, Heart, Star } from 'lucide-vue-next'

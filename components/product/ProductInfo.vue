@@ -102,8 +102,8 @@
       </div>
 
       <!-- Qty + actions -->
-      <div class="flex flex-wrap items-center gap-4">
-        <div class="flex items-center rounded-full border border-border bg-white">
+      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+        <div class="flex w-fit items-center rounded-full border border-border bg-white">
           <button
             type="button"
             class="flex h-12 w-12 items-center justify-center text-text-muted transition-colors hover:text-accent disabled:opacity-40"
@@ -124,13 +124,15 @@
           </button>
         </div>
 
-        <button type="button" class="btn-primary flex-1 min-w-[140px]" :disabled="!product.inStock" @click="emitAddToCart">
-          <ShoppingBag :size="16" />
-          Add to Cart
-        </button>
-        <button type="button" class="btn-secondary flex-1 min-w-[140px]" :disabled="!product.inStock" @click="emitBuyNow">
-          Buy Now
-        </button>
+        <div class="grid w-full grid-cols-1 gap-3 xs:grid-cols-2 sm:flex sm:min-w-0 sm:flex-1 sm:flex-wrap">
+          <button type="button" class="btn-primary w-full sm:min-w-[140px] sm:flex-1" :disabled="!product.inStock" @click="emitAddToCart">
+            <ShoppingBag :size="16" />
+            Add to Cart
+          </button>
+          <button type="button" class="btn-secondary w-full sm:min-w-[140px] sm:flex-1" :disabled="!product.inStock" @click="emitBuyNow">
+            Buy Now
+          </button>
+        </div>
       </div>
 
       <div class="flex gap-3">

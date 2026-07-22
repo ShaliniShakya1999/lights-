@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-background">
+  <div class="min-h-screen flex flex-col bg-background overflow-x-clip">
     <LayoutSiteHeader />
-    <main class="flex-1" :class="isHome ? '' : 'pt-16 lg:pt-[76px]'">
+    <main class="flex-1 min-w-0" :class="isHome ? '' : 'pt-16 sm:pt-[72px] lg:pt-[84px]'">
       <slot />
     </main>
     <LayoutSiteFooter />

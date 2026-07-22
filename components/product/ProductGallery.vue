@@ -1,12 +1,12 @@
 <template>
-  <div class="grid gap-4 lg:grid-cols-[88px_1fr]">
-    <!-- Vertical thumbnails -->
-    <div class="order-2 lg:order-1 flex lg:flex-col gap-3 overflow-x-auto lg:overflow-y-auto lg:max-h-[640px] scrollbar-thin pb-1 lg:pb-0">
+  <div class="grid gap-3 sm:gap-4 lg:grid-cols-[80px_1fr] xl:grid-cols-[88px_1fr]">
+    <!-- Thumbnails: horizontal on mobile, vertical on desktop -->
+    <div class="order-2 lg:order-1 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 scrollbar-thin sm:gap-3 lg:mx-0 lg:max-h-[70vh] lg:flex-col lg:overflow-y-auto lg:overflow-x-visible lg:px-0 lg:pb-0">
       <button
         v-for="(img, i) in product.images"
         :key="img"
         type="button"
-        class="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 transition-all duration-luxury"
+        class="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 transition-all duration-luxury sm:h-20 sm:w-20 sm:rounded-2xl"
         :class="activeIndex === i ? 'border-accent shadow-soft' : 'border-border hover:border-accent/40'"
         @click="setActive(i)"
       >
@@ -15,7 +15,7 @@
       <button
         v-if="product.video"
         type="button"
-        class="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-border bg-secondary text-white flex items-center justify-center hover:border-accent transition-all"
+        class="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-border bg-secondary text-white transition-all hover:border-accent sm:h-20 sm:w-20 sm:rounded-2xl"
         :class="mode === 'video' ? '!border-accent' : ''"
         @click="mode = 'video'"
       >
@@ -23,7 +23,7 @@
       </button>
       <button
         type="button"
-        class="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-border bg-accent-soft text-accent flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium hover:border-accent transition-all"
+        class="relative flex h-16 w-16 shrink-0 flex-col items-center justify-center gap-0.5 overflow-hidden rounded-xl border-2 border-border bg-accent-soft text-[10px] font-medium text-accent transition-all hover:border-accent sm:h-20 sm:w-20 sm:rounded-2xl"
         :class="mode === '360' ? '!border-accent' : ''"
         @click="mode = '360'"
       >
@@ -33,11 +33,10 @@
     </div>
 
     <!-- Main stage -->
-    <div class="order-1 lg:order-2 relative overflow-hidden rounded-luxury bg-[#F3F3F3] aspect-square lg:aspect-auto lg:min-h-[640px]">
-      <!-- Zoom image -->
+    <div class="order-1 lg:order-2 relative aspect-square overflow-hidden rounded-2xl bg-[#F3F3F3] sm:rounded-luxury lg:aspect-auto lg:min-h-[520px] xl:min-h-[640px]">
       <div
         v-if="mode === 'image'"
-        class="relative h-full w-full cursor-crosshair overflow-hidden"
+        class="relative h-full w-full overflow-hidden lg:cursor-crosshair"
         @mousemove="onZoom"
         @mouseleave="zooming = false"
         @mouseenter="zooming = true"
@@ -48,12 +47,11 @@
           class="h-full w-full object-cover transition-transform duration-300"
           :style="zoomStyle"
         >
-        <div class="absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1.5 text-[11px] text-text-muted backdrop-blur shadow-soft">
+        <div class="absolute bottom-3 left-3 hidden rounded-full bg-white/90 px-3 py-1.5 text-[11px] text-text-muted shadow-soft backdrop-blur lg:block">
           Hover to zoom
         </div>
       </div>
 
-      <!-- Video -->
       <div v-else-if="mode === 'video'" class="absolute inset-0 bg-black">
         <iframe
           v-if="product.video"
@@ -65,24 +63,22 @@
         />
       </div>
 
-      <!-- 360 viewer simulation -->
       <div v-else class="relative h-full w-full select-none" @mousedown="startDrag" @touchstart.passive="startDrag">
         <img
           :src="product.images[spinIndex]"
           :alt="`${product.name} 360 view`"
-          class="h-full w-full object-cover pointer-events-none"
+          class="pointer-events-none h-full w-full object-cover"
           draggable="false"
         >
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-6 text-center">
-          <p class="text-sm text-white/90">Drag to rotate · Frame {{ spinIndex + 1 }}/{{ product.images.length }}</p>
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/50 to-transparent p-4 text-center sm:p-6">
+          <p class="text-xs text-white/90 sm:text-sm">Drag to rotate · Frame {{ spinIndex + 1 }}/{{ product.images.length }}</p>
         </div>
-        <div class="absolute top-4 right-4 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-medium text-accent backdrop-blur">
+        <div class="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-medium text-accent backdrop-blur sm:right-4 sm:top-4">
           360° Viewer
         </div>
       </div>
 
-      <!-- Badges -->
-      <div class="absolute left-4 top-4 flex flex-col gap-1.5 z-10 pointer-events-none">
+      <div class="pointer-events-none absolute left-3 top-3 z-10 flex flex-col gap-1.5 sm:left-4 sm:top-4">
         <span
           v-for="badge in product.badges"
           :key="badge"

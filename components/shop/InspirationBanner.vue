@@ -2,7 +2,7 @@
   <section
     id="inspiration"
     ref="sectionRef"
-    class="relative min-h-[360px] overflow-hidden rounded-luxury lg:min-h-[440px]"
+    class="relative min-h-[280px] overflow-hidden rounded-2xl sm:min-h-[360px] sm:rounded-luxury lg:min-h-[440px]"
   >
     <div
       class="absolute inset-[-20%] will-change-transform"
@@ -16,18 +16,18 @@
       >
     </div>
     <div class="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/55 to-secondary/20" />
-    <div class="relative z-10 flex h-full min-h-[360px] items-center px-8 py-14 sm:px-12 lg:min-h-[440px] lg:px-16">
+    <div class="relative z-10 flex h-full min-h-[280px] items-center px-5 py-10 xs:px-6 sm:min-h-[360px] sm:px-12 sm:py-14 lg:min-h-[440px] lg:px-16">
       <div class="max-w-lg text-white">
         <p class="section-label !text-accent" data-animate="fade-up">Interior Stories</p>
         <h2
-          class="mt-4 heading-section !text-white"
+          class="mt-3 heading-section !text-white sm:mt-4"
           data-animate="fade-up"
           data-delay="0.1"
         >
           Interior Inspiration
         </h2>
         <p
-          class="mt-5 text-base leading-relaxed text-white/70"
+          class="mt-3 text-sm leading-relaxed text-white/70 sm:mt-5 sm:text-base"
           data-animate="fade-up"
           data-delay="0.2"
         >
@@ -35,7 +35,7 @@
         </p>
         <NuxtLink
           to="/lighting/chandeliers"
-          class="btn-primary mt-8 inline-flex"
+          class="btn-primary mt-6 inline-flex sm:mt-8"
           data-animate="fade-up"
           data-delay="0.3"
         >

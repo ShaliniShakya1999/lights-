@@ -26,39 +26,39 @@
     <div class="absolute inset-0 bg-black/40" />
     <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
 
-    <div class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center px-4 py-32 text-center sm:px-6 lg:px-10">
+    <div class="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center px-4 py-28 text-center xs:px-5 sm:px-6 sm:py-32 lg:px-10">
       <p
-        class="section-label !text-accent tracking-[0.38em] hero-fade"
+        class="section-label !text-accent tracking-[0.22em] xs:tracking-[0.3em] sm:tracking-[0.38em] hero-fade"
         style="animation-delay: 0.05s"
       >
         DINMANS Design Studio
       </p>
       <h1
-        class="heading-hero mx-auto mt-7 max-w-5xl font-semibold text-white hero-fade"
+        class="heading-hero mx-auto mt-5 max-w-5xl font-semibold text-white hero-fade sm:mt-7"
         style="animation-delay: 0.15s"
       >
         Illuminate Every Corner with Luxury Lighting
       </h1>
       <p
-        class="body-lead mx-auto mt-7 max-w-2xl !text-white/85 hero-fade"
+        class="body-lead mx-auto mt-5 max-w-2xl !text-white/85 hero-fade sm:mt-7"
         style="animation-delay: 0.28s"
       >
         Discover handcrafted chandeliers, pendant lights and designer lamps.
       </p>
       <div
-        class="mt-11 flex flex-wrap items-center justify-center gap-4 hero-fade"
+        class="mt-8 flex w-full max-w-md flex-col items-stretch justify-center gap-3 hero-fade xs:max-w-none xs:flex-row xs:flex-wrap xs:items-center sm:mt-11 sm:gap-4"
         style="animation-delay: 0.4s"
       >
         <NuxtLink
           to="/lighting/chandeliers"
-          class="btn-primary hero-cta min-w-[190px] !px-11 !py-4 !text-base !font-bold"
+          class="btn-primary hero-cta w-full xs:w-auto xs:min-w-[160px] sm:min-w-[190px] !px-8 !py-3.5 !text-sm !font-bold sm:!px-11 sm:!py-4 sm:!text-base"
           @click="ripple"
         >
           Shop Collection
         </NuxtLink>
         <NuxtLink
           to="/lighting/lamps"
-          class="btn-secondary min-w-[180px] !border-2 !border-white/90 !px-10 !py-4 !text-base !text-white hover:!bg-white hover:!text-secondary"
+          class="btn-secondary w-full xs:w-auto xs:min-w-[150px] sm:min-w-[180px] !border-2 !border-white/90 !px-8 !py-3.5 !text-sm !text-white hover:!bg-white hover:!text-secondary sm:!px-10 sm:!py-4 sm:!text-base"
           @click="ripple"
         >
           Explore Catalog
@@ -66,13 +66,13 @@
       </div>
     </div>
 
-    <div class="absolute inset-x-0 bottom-8 z-20 flex flex-col items-center gap-5 sm:bottom-10">
+    <div class="absolute inset-x-0 bottom-5 z-20 flex flex-col items-center gap-3 sm:bottom-10 sm:gap-5">
       <div class="flex gap-2">
         <button
           v-for="(_, idx) in slides"
           :key="idx"
           type="button"
-          class="h-1.5 rounded-full transition-all duration-500"
+          class="h-2 min-w-[28px] rounded-full transition-all duration-500 sm:h-1.5 sm:min-w-0"
           :class="idx === activeIndex ? 'w-8 bg-accent' : 'w-2.5 bg-white/40 hover:bg-white/70'"
           :aria-label="`Show image ${idx + 1}`"
           @click="goTo(idx)"
@@ -80,7 +80,7 @@
       </div>
       <a
         href="#trust"
-        class="group flex flex-col items-center gap-2 text-white/70 transition-colors hover:text-accent"
+        class="group hidden flex-col items-center gap-2 text-white/70 transition-colors hover:text-accent sm:flex"
         aria-label="Scroll to content"
       >
         <span class="text-[10px] uppercase tracking-[0.28em]">Scroll</span>

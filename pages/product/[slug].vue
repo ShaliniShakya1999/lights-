@@ -3,12 +3,12 @@
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <ShopBreadcrumb :items="breadcrumbs" />
 
-      <div class="grid gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
+      <div class="grid gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16">
         <div data-animate="fade-right">
-          <ProductProductGallery :product="product" />
+          <ProductGallery :product="product" />
         </div>
         <div data-animate="fade-left" data-delay="0.12">
-          <ProductProductInfo
+          <ProductInfo
             v-model:qty="qty"
             :product="product"
             @add-to-cart="onAddToCart"
@@ -17,15 +17,15 @@
         </div>
       </div>
 
-      <div class="mt-16 space-y-20">
+      <div class="mt-12 space-y-16 sm:mt-16 sm:space-y-20">
         <div data-animate="fade-up">
-          <ProductProductTabs :product="product" />
+          <ProductTabs :product="product" />
         </div>
         <div data-animate="fade-up">
-          <ProductProductReviews :product="product" />
+          <ProductReviews :product="product" />
         </div>
         <div data-animate="fade-up">
-          <ProductProductFAQ :faqs="product.faqs" />
+          <ProductFAQ :faqs="product.faqs" />
         </div>
         <div data-animate="fade-up">
           <ProductRelatedProducts :products="related" />
