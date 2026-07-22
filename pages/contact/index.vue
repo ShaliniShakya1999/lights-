@@ -35,22 +35,30 @@
 
       <aside class="h-fit rounded-3xl border border-border bg-white p-6 sm:p-8 space-y-6">
         <div>
-          <h2 class="font-playfair text-2xl">Visit</h2>
-          <p class="mt-3 text-sm leading-relaxed text-text-muted">
-            DINMANS Atelier<br>
-            12 Design District<br>
-            Mumbai · Bangalore · Delhi
+          <h2 class="heading-card">Visit</h2>
+          <p class="body-lead mt-3 !text-text-muted">
+            Southcity-1 Sector 30, Block-A<br>
+            Near Six Element School,<br>
+            Opposite to Signature Tower<br>
+            Gurugram – 122001
           </p>
         </div>
         <div>
-          <h2 class="font-playfair text-2xl">Email</h2>
-          <a href="mailto:concierge@dinmans.com" class="mt-3 block text-sm text-accent hover:underline">
-            concierge@dinmans.com
+          <h2 class="heading-card">Email</h2>
+          <a href="mailto:dinmanslightup@gmail.com" class="mt-3 block text-base text-accent hover:underline">
+            dinmanslightup@gmail.com
           </a>
         </div>
         <div>
-          <h2 class="font-playfair text-2xl">Phone</h2>
-          <p class="mt-3 text-sm text-text-muted">+91 98765 43210</p>
+          <h2 class="heading-card">Phone</h2>
+          <p class="mt-3 text-base text-text-muted">
+            <a href="tel:+919992121006" class="hover:text-accent">9992121006</a>,
+            <a href="tel:+917015638389" class="hover:text-accent">7015638389</a>
+          </p>
+        </div>
+        <div>
+          <h2 class="heading-card">GSTIN</h2>
+          <p class="mt-3 text-base text-text-muted">06BDOPS3565G1Z4</p>
         </div>
       </aside>
     </div>
