@@ -69,23 +69,25 @@
           </ul>
         </div>
 
+        <!-- Follow Us — clean social UI -->
         <div class="sm:col-span-2 lg:col-span-4" data-animate="fade-up" data-delay="0.15">
-          <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-white/55">Follow Us</p>
-            <div class="mt-3 flex flex-wrap gap-3">
-              <a
-                v-for="s in socials"
-                :key="s.label"
-                :href="s.href"
-                class="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-xs text-white/85 transition-all duration-300 hover:scale-110 hover:border-accent hover:bg-accent hover:text-white"
-                :aria-label="s.label"
-              >
-                {{ s.short }}
-              </a>
-            </div>
+          <h4 class="text-base font-semibold tracking-wide text-white">Follow Us</h4>
+          <div class="mt-5 flex items-center gap-3">
+            <a
+              v-for="s in socials"
+              :key="s.label"
+              :href="s.href"
+              class="group flex h-11 w-11 items-center justify-center rounded-full border border-white/25 bg-white/5 text-white/80 transition-all duration-300 hover:border-accent hover:bg-accent hover:text-white hover:shadow-[0_8px_20px_rgba(232,120,42,0.35)]"
+              :aria-label="s.label"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <component :is="s.icon" :size="17" stroke-width="1.75" />
+            </a>
           </div>
-
-          <p class="mt-5 text-sm text-white/65">GSTIN: 06BDOPS3565G1Z4</p>
+          <p class="mt-6 text-sm tracking-wide text-white/60">
+            GSTIN: <span class="text-white/80">06BDOPS3565G1Z4</span>
+          </p>
         </div>
       </div>
 
@@ -108,13 +110,35 @@
 </template>
 
 <script setup lang="ts">
+import { Facebook, Instagram, Youtube } from 'lucide-vue-next'
+import { h } from 'vue'
+
+/** Simple Pinterest mark (Lucide has no Pinterest icon) */
+const PinterestIcon = (_props: { size?: number; strokeWidth?: number | string }) =>
+  h(
+    'svg',
+    {
+      xmlns: 'http://www.w3.org/2000/svg',
+      width: _props.size ?? 17,
+      height: _props.size ?? 17,
+      viewBox: '0 0 24 24',
+      fill: 'currentColor',
+      'aria-hidden': 'true',
+    },
+    [
+      h('path', {
+        d: 'M12 2C6.48 2 2 6.27 2 11.7c0 4.1 2.55 7.62 6.18 8.95-.09-.76-.16-1.93.03-2.76.17-.74 1.12-4.72 1.12-4.72s-.29-.57-.29-1.41c0-1.32.77-2.31 1.72-2.31.81 0 1.2.61 1.2 1.34 0 .82-.52 2.04-.79 3.17-.23.96.48 1.74 1.42 1.74 1.71 0 2.86-2.2 2.86-4.8 0-1.98-1.33-3.47-3.75-3.47-2.73 0-4.44 2.03-4.44 4.3 0 .78.23 1.33.6 1.76.07.08.08.15.06.23l-.22.9c-.04.14-.12.18-.27.11-1-.47-1.47-1.73-1.47-3.15 0-2.34 1.98-5.15 5.91-5.15 3.16 0 5.24 2.3 5.24 4.77 0 3.26-1.81 5.7-4.49 5.7-.9 0-1.74-.48-2.03-1.03l-.55 2.1c-.2.77-.59 1.54-.94 2.14A10.3 10.3 0 0 0 12 21.4c5.52 0 10-4.27 10-9.7C22 6.27 17.52 2 12 2z',
+      }),
+    ],
+  )
+
 const year = new Date().getFullYear()
 
 const socials = [
-  { label: 'Instagram', short: 'Ig', href: '#' },
-  { label: 'Facebook', short: 'Fb', href: '#' },
-  { label: 'Pinterest', short: 'Pin', href: '#' },
-  { label: 'YouTube', short: 'Yt', href: '#' },
+  { label: 'Instagram', icon: Instagram, href: 'https://instagram.com' },
+  { label: 'Facebook', icon: Facebook, href: 'https://facebook.com' },
+  { label: 'Pinterest', icon: PinterestIcon, href: 'https://pinterest.com' },
+  { label: 'YouTube', icon: Youtube, href: 'https://youtube.com' },
 ]
 
 const payments = ['Visa', 'Mastercard', 'UPI', 'RuPay', 'COD']
