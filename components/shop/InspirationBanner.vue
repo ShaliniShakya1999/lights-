@@ -1,16 +1,22 @@
 <template>
   <section
     id="inspiration"
-    class="relative min-h-[360px] overflow-hidden rounded-luxury lg:min-h-[420px]"
-    data-animate="zoom-in"
+    ref="sectionRef"
+    class="relative min-h-[360px] overflow-hidden rounded-luxury lg:min-h-[440px]"
   >
-    <img
-      src="/hero_2.jpg"
-      alt="Interior inspiration with luxury lighting"
-      class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-out hover:scale-105"
+    <div
+      class="absolute inset-[-20%] will-change-transform"
+      :style="{ transform: `translate3d(0, ${parallaxY}px, 0) scale(1.18)` }"
     >
+      <img
+        src="/homepages/c3.jpg"
+        alt="Interior inspiration with luxury lighting"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      >
+    </div>
     <div class="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/55 to-secondary/20" />
-    <div class="relative z-10 flex h-full min-h-[360px] items-center px-8 py-14 sm:px-12 lg:min-h-[420px] lg:px-16">
+    <div class="relative z-10 flex h-full min-h-[360px] items-center px-8 py-14 sm:px-12 lg:min-h-[440px] lg:px-16">
       <div class="max-w-lg text-white">
         <p class="section-label !text-accent" data-animate="fade-up">Interior Stories</p>
         <h2
@@ -39,3 +45,23 @@
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+const sectionRef = ref<HTMLElement | null>(null)
+const parallaxY = ref(0)
+
+onMounted(() => {
+  const onScroll = () => {
+    const el = sectionRef.value
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const viewH = window.innerHeight
+    const center = rect.top + rect.height / 2
+    const progress = (center - viewH / 2) / viewH
+    parallaxY.value = Math.max(-80, Math.min(80, progress * -60))
+  }
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onUnmounted(() => window.removeEventListener('scroll', onScroll))
+})
+</script>

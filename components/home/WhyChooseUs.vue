@@ -9,13 +9,13 @@
         </p>
       </div>
 
-      <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" data-stagger-grid>
         <div
           v-for="(item, i) in items"
           :key="item.title"
-          class="rounded-luxury border border-border bg-white p-6 text-center transition-all duration-500 hover:-translate-y-1 hover:shadow-luxury hover:border-accent/30"
-          data-animate="fade-up"
-          :data-delay="String(i * 0.06)"
+          class="rounded-luxury border border-border bg-white p-6 text-center transition-all duration-500 hover:-translate-y-1.5 hover:shadow-luxury hover:border-accent/30 card-reveal"
+          :style="{ animationDelay: `${i * 0.07}s` }"
+          data-animate-child
         >
           <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-accent">
             <component :is="item.icon" :size="22" />

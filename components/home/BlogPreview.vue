@@ -8,14 +8,14 @@
         </div>
         <NuxtLink to="/blog" class="btn-ghost w-fit">All Articles</NuxtLink>
       </div>
-      <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <div class="mt-12 grid gap-6 md:grid-cols-3" data-stagger-grid>
         <NuxtLink
           v-for="(post, i) in posts"
           :key="post.title"
           to="/blog"
-          class="group overflow-hidden rounded-luxury border border-border bg-background transition-all duration-500 hover:-translate-y-1 hover:shadow-luxury"
-          data-animate="fade-up"
-          :data-delay="String(i * 0.08)"
+          class="group overflow-hidden rounded-luxury border border-border bg-background transition-all duration-500 hover:-translate-y-1.5 hover:shadow-luxury card-reveal"
+          :style="{ animationDelay: `${i * 0.08}s` }"
+          data-animate-child
         >
           <div class="aspect-[16/10] overflow-hidden">
             <img :src="post.image" :alt="post.title" class="img-zoom h-full w-full object-cover" loading="lazy">

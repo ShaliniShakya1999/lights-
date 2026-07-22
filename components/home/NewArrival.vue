@@ -14,7 +14,7 @@
         </NuxtLink>
       </div>
 
-      <div class="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4">
+      <div class="mt-12 grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4" data-stagger-grid>
         <ShopProductCard
           v-for="(product, index) in products"
           :key="product.id"

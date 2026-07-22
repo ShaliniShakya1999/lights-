@@ -1,10 +1,15 @@
 <template>
-  <section class="relative overflow-hidden rounded-luxury min-h-[300px] lg:min-h-[420px] shadow-luxury">
-    <img
-      :src="image"
-      :alt="title"
-      class="absolute inset-0 h-full w-full object-cover scale-105 transition-transform duration-[8s] ease-out hover:scale-110"
+  <section ref="sectionRef" class="relative overflow-hidden rounded-luxury min-h-[300px] lg:min-h-[420px] shadow-luxury">
+    <div
+      class="absolute inset-[-18%] will-change-transform"
+      :style="{ transform: `translate3d(0, ${parallaxY}px, 0) scale(1.16)` }"
     >
+      <img
+        :src="image"
+        :alt="title"
+        class="h-full w-full object-cover"
+      >
+    </div>
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25" />
     <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
 
@@ -44,12 +49,29 @@ withDefaults(defineProps<{
 }>(), {
   title: 'Luxury Chandeliers',
   subtitle: 'Elegant crystal and designer chandeliers crafted for modern interiors.',
-  image: '/collection_1.jpg',
+  image: '/homepages/d4.jpg',
 })
 
 const { ripple } = useMotion()
+const sectionRef = ref<HTMLElement | null>(null)
+const parallaxY = ref(0)
 
 function onCta(e: MouseEvent) {
   ripple(e)
 }
+
+onMounted(() => {
+  const onScroll = () => {
+    const el = sectionRef.value
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const viewH = window.innerHeight
+    const center = rect.top + rect.height / 2
+    const progress = (center - viewH / 2) / viewH
+    parallaxY.value = Math.max(-85, Math.min(85, progress * -65))
+  }
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onUnmounted(() => window.removeEventListener('scroll', onScroll))
+})
 </script>

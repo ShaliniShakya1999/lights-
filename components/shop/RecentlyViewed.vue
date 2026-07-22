@@ -6,13 +6,12 @@
         <h2 class="mt-2 font-playfair text-3xl sm:text-4xl">Recently Viewed</h2>
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4">
+    <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4" data-stagger-grid>
       <ShopProductCard
         v-for="(product, index) in products.slice(0, 4)"
         :key="product.id"
         :product="product"
         :index="index"
-        :animate="false"
         @add-to-cart="onAddToCart"
       />
     </div>

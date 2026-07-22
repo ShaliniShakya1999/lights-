@@ -12,15 +12,15 @@
         <NuxtLink to="/projects" class="btn-ghost w-fit">View Projects</NuxtLink>
       </div>
 
-      <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-5">
+      <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-5" data-stagger-grid>
         <NuxtLink
           v-for="(project, i) in projects"
           :key="project.title"
           to="/projects"
-          class="group relative overflow-hidden rounded-luxury"
+          class="group relative overflow-hidden rounded-luxury card-reveal"
           :class="i === 0 ? 'lg:col-span-2 lg:row-span-2 aspect-square lg:aspect-auto lg:min-h-[420px]' : 'aspect-[4/3]'"
-          data-animate="fade-up"
-          :data-delay="String(i * 0.06)"
+          :style="{ animationDelay: `${i * 0.07}s` }"
+          data-animate-child
         >
           <img :src="project.image" :alt="project.title" class="img-zoom h-full w-full object-cover" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-90" />

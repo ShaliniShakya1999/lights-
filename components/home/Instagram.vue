@@ -6,14 +6,14 @@
         <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">@dinmans</h2>
         <p class="mt-4 text-sm text-text-muted">Follow our latest installations and styling moments.</p>
       </div>
-      <div class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
+      <div class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4" data-stagger-grid>
         <a
           v-for="(img, i) in images"
           :key="img"
           href="#"
-          class="group relative aspect-square overflow-hidden rounded-2xl"
-          data-animate="zoom-in"
-          :data-delay="String(i * 0.05)"
+          class="group relative aspect-square overflow-hidden rounded-2xl card-reveal"
+          :style="{ animationDelay: `${i * 0.06}s` }"
+          data-animate-child
         >
           <img :src="img" alt="Instagram lighting" class="img-zoom h-full w-full object-cover" loading="lazy">
           <div class="absolute inset-0 bg-secondary/0 transition-colors duration-300 group-hover:bg-secondary/30" />

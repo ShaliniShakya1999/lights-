@@ -1,6 +1,7 @@
 <template>
   <div
     class="grid gap-5 sm:gap-6"
+    data-stagger-grid
     :class="list ? 'grid-cols-1' : gridClass"
   >
     <ShopProductCard

@@ -34,11 +34,35 @@
   }
 
   .luxury-card {
-    @apply rounded-luxury bg-card border border-border shadow-soft transition-all duration-500 ease-out;
+    @apply relative rounded-luxury bg-card border border-border shadow-soft transition-all duration-500 ease-out;
+  }
+
+  .luxury-card::after {
+    content: '';
+    @apply pointer-events-none absolute inset-0 rounded-luxury opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), transparent 45%);
   }
 
   .luxury-card:hover {
-    @apply -translate-y-2 shadow-luxury-hover border-accent/20;
+    @apply -translate-y-2.5 shadow-luxury-hover border-accent/30;
+  }
+
+  .luxury-card:hover::after {
+    @apply opacity-100;
+  }
+
+  .card-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    animation: cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
   }
 
   .glass-panel {
@@ -217,6 +241,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

@@ -9,14 +9,14 @@
         </p>
       </div>
 
-      <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6">
+      <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3 lg:gap-6" data-stagger-grid>
         <NuxtLink
           v-for="(room, i) in rooms"
           :key="room.name"
           :to="room.to"
-          class="group relative aspect-[5/4] overflow-hidden rounded-luxury"
-          data-animate="fade-up"
-          :data-delay="String(i * 0.07)"
+          class="group relative aspect-[5/4] overflow-hidden rounded-luxury card-reveal"
+          :style="{ animationDelay: `${i * 0.07}s` }"
+          data-animate-child
         >
           <img :src="room.image" :alt="room.name" class="img-zoom h-full w-full object-cover" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />

@@ -5,9 +5,8 @@
         <div
           v-for="(item, i) in items"
           :key="item.title"
-          class="flex gap-4 sm:gap-5"
-          data-animate="fade-up"
-          :data-delay="String(i * 0.08)"
+          class="flex gap-4 sm:gap-5 card-reveal"
+          :style="{ animationDelay: `${i * 0.1}s` }"
         >
           <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent sm:h-14 sm:w-14">
             <component :is="item.icon" :size="22" />

@@ -1,9 +1,9 @@
 <template>
   <article
-    class="group luxury-card overflow-hidden"
+    class="group luxury-card overflow-hidden card-reveal"
     :class="list ? 'sm:flex sm:flex-row' : ''"
-    data-animate="fade-up"
-    :data-delay="String(index * 0.05)"
+    data-animate-child
+    :style="{ animationDelay: `${Math.min(index, 8) * 0.07}s` }"
   >
     <div
       class="relative overflow-hidden bg-white"

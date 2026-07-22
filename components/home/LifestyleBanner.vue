@@ -1,13 +1,20 @@
 <template>
-  <section class="relative overflow-hidden py-20 lg:py-28">
-    <img
-      src="/hero_2.jpg"
-      alt="Luxury lighting collection"
-      class="absolute inset-0 h-full w-full object-cover"
-      loading="lazy"
+  <section ref="sectionRef" class="relative overflow-hidden py-24 lg:py-32">
+    <div
+      class="absolute inset-[-18%] will-change-transform"
+      :style="{ transform: `translate3d(0, ${parallaxY}px, 0) scale(1.15)` }"
     >
-    <div class="absolute inset-0 bg-secondary/75" />
-    <div class="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
+      <img
+        :src="image"
+        alt="Luxury lighting collection"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      >
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/35" />
+    <div class="absolute inset-0 bg-secondary/40" />
+
+    <div class="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="max-w-2xl text-white" data-animate="fade-up">
         <p class="section-label !text-accent">Luxury Collection</p>
         <h2 class="mt-4 font-playfair text-4xl sm:text-5xl lg:text-6xl text-balance">
@@ -23,3 +30,31 @@
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+withDefaults(defineProps<{
+  image?: string
+}>(), {
+  image: '/catalog/p7.jpg',
+})
+
+const sectionRef = ref<HTMLElement | null>(null)
+const parallaxY = ref(0)
+
+onMounted(() => {
+  const onScroll = () => {
+    const el = sectionRef.value
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const viewH = window.innerHeight
+    // Progress while section is in view: -1 .. 1
+    const center = rect.top + rect.height / 2
+    const progress = (center - viewH / 2) / viewH
+    parallaxY.value = Math.max(-90, Math.min(90, progress * -70))
+  }
+
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onUnmounted(() => window.removeEventListener('scroll', onScroll))
+})
+</script>

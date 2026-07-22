@@ -219,22 +219,22 @@ const bannerSubtitle = computed(() =>
 const bannerImage = computed(() => {
   const map: Record<string, string> = {
     'Decorative Lighting': '/homepages/slider_new1.jpg',
-    Chandeliers: '/collection_1.jpg',
-    Lamps: '/homepages/b2.jpg',
-    'General Light Interior': '/homepages/a1.jpg',
-    'COB Panel Track Lights': '/homepages/e5.jpg',
+    Chandeliers: '/homepages/d4.jpg',
+    Lamps: '/catalog/p3.jpg',
+    'General Light Interior': '/homepages/c3.jpg',
+    'COB Panel Track Lights': '/catalog/p11.jpg',
     'Ceiling Fans': '/homepages/c3.jpg',
     'Door-Bells-Wifi': '/homepages/d4.jpg',
-    Gadgets: '/homepages/e5.jpg',
-    'Pendant Lights': '/collection_2.jpg',
-    'Floor Lamps': '/collection_3.jpg',
-    'Wall Lights': '/homepages/a1.jpg',
-    'Table Lamps': '/homepages/b2.jpg',
+    Gadgets: '/catalog/p15.jpg',
+    'Pendant Lights': '/catalog/p5.jpg',
+    'Floor Lamps': '/catalog/p13.jpg',
+    'Wall Lights': '/catalog/p7.jpg',
+    'Table Lamps': '/catalog/p9.jpg',
     'Ceiling Lights': '/homepages/f6.jpg',
     'Outdoor Lights': '/homepages/g7.jpg',
-    'Track Lights': '/homepages/e5.jpg',
+    'Track Lights': '/catalog/p11.jpg',
   }
-  return map[categoryName.value] || '/hero_1.jpg'
+  return map[categoryName.value] || '/homepages/c3.jpg'
 })
 
 function onAddToCart(product: Product) {

@@ -1,26 +1,28 @@
 <script setup lang="ts">
+import { catalogImages } from '~/data/catalog-images'
+
 const categories = [
   {
     title: 'Lamps',
-    image: '/homepages/b2.jpg',
+    image: catalogImages[2] || '/catalog/p3.jpg',
     to: '/lighting/lamps',
     count: 'Table & floor lamps',
   },
   {
     title: 'General Light Interior',
-    image: '/homepages/a1.jpg',
+    image: '/homepages/c3.jpg',
     to: '/lighting/general-light-interior',
     count: 'Everyday interiors',
   },
   {
     title: 'Chandeliers',
-    image: '/collection_1.jpg',
+    image: '/homepages/d4.jpg',
     to: '/lighting/chandeliers',
     count: 'Statement pieces',
   },
   {
     title: 'COB Panel Track Lights',
-    image: '/homepages/e5.jpg',
+    image: catalogImages[10] || '/catalog/p11.jpg',
     to: '/lighting/cob-panel-track-lights',
     count: 'Commercial & home',
   },
@@ -45,9 +47,8 @@ const categories = [
           v-for="(item, i) in categories"
           :key="item.title"
           :to="item.to"
-          class="group relative aspect-[3/4] overflow-hidden rounded-luxury shadow-soft"
-          data-animate="zoom-in"
-          :data-delay="String(0.06 * i)"
+          class="group relative aspect-[3/4] overflow-hidden rounded-luxury shadow-soft card-reveal"
+          :style="{ animationDelay: `${i * 0.08}s` }"
           data-animate-child
         >
           <img
