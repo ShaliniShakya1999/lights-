@@ -15,6 +15,7 @@ const paragraphs = [
     'Every brand is curated for craftsmanship, finish quality, and lasting design.',
 ]
 
+
 const cta = { label: 'Browse Products', to: '/lighting/chandeliers' }
 
 useSeoMeta({
