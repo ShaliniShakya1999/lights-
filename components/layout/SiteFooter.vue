@@ -1,18 +1,5 @@
 <template>
   <footer class="mt-auto bg-secondary text-white">
-    <div class="border-b border-white/10">
-      <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 py-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-        <div>
-          <p class="section-label !text-accent">Stay in the light</p>
-          <h3 class="mt-2 font-playfair text-2xl sm:text-3xl">Join the DINMANS newsletter</h3>
-        </div>
-        <form class="flex w-full max-w-md flex-col gap-3 sm:flex-row" @submit.prevent>
-          <input type="email" required placeholder="Email address" class="input-luxury flex-1 !bg-white">
-          <button type="submit" class="btn-primary shrink-0">Subscribe</button>
-        </form>
-      </div>
-    </div>
-
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 py-16 lg:py-20">
       <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-6">
         <div class="lg:col-span-2" data-animate="fade-up">
