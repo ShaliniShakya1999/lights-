@@ -129,7 +129,11 @@ const route = useRoute()
 const categorySlug = computed(() => String(route.params.category || 'chandeliers'))
 
 const categoryMap: Record<string, string> = {
+  'decorative-lighting': 'Decorative Lighting',
   chandeliers: 'Chandeliers',
+  'ceiling-fans': 'Ceiling Fans',
+  'door-bells-wifi': 'Door-Bells-Wifi',
+  gadgets: 'Gadgets',
   'pendant-lights': 'Pendant Lights',
   'table-lamps': 'Table Lamps',
   'floor-lamps': 'Floor Lamps',
@@ -156,6 +160,7 @@ const {
 } = useProductCatalog()
 
 const { recentProducts } = useRecentlyViewed()
+const cart = useCart()
 
 const filterOpen = ref(false)
 const quickViewProduct = ref<Product | null>(null)
@@ -191,24 +196,29 @@ const bannerTitle = computed(() => `Luxury ${categoryName.value} Collection`)
 const bannerSubtitle = 'Discover premium handcrafted lighting collections for modern interiors.'
 const bannerImage = computed(() => {
   const map: Record<string, string> = {
-    Chandeliers: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=1400&h=1000&fit=crop',
-    'Pendant Lights': 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=1400&h=1000&fit=crop',
-    'Floor Lamps': 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1400&h=1000&fit=crop',
-    'Wall Lights': 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1400&h=1000&fit=crop',
+    'Decorative Lighting': '/homepages/slider_new1.jpg',
+    Chandeliers: '/collection_1.jpg',
+    'Ceiling Fans': '/homepages/c3.jpg',
+    'Door-Bells-Wifi': '/homepages/d4.jpg',
+    Gadgets: '/homepages/e5.jpg',
+    'Pendant Lights': '/collection_2.jpg',
+    'Floor Lamps': '/collection_3.jpg',
+    'Wall Lights': '/homepages/a1.jpg',
   }
-  return map[categoryName.value] || map.Chandeliers
+  return map[categoryName.value] || '/hero_1.jpg'
 })
 
 function onAddToCart(product: Product) {
+  cart.add(product.id, 1)
   toast.value = `${product.name} added to cart`
   setTimeout(() => { toast.value = '' }, 2500)
   quickViewProduct.value = null
 }
 
 useSeoMeta({
-  title: () => `${categoryName.value} | Lampe Luxury Lighting`,
+  title: () => `${categoryName.value} | DINMANS Luxury Lighting`,
   description: () => `Shop premium ${categoryName.value.toLowerCase()} — handcrafted luxury lighting for modern interiors.`,
-  ogTitle: () => `Luxury ${categoryName.value} Collection | Lampe`,
+  ogTitle: () => `Luxury ${categoryName.value} Collection | DINMANS`,
   ogDescription: () => bannerSubtitle,
   ogImage: () => bannerImage.value,
 })

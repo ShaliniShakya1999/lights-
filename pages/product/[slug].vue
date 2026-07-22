@@ -73,6 +73,8 @@ const slug = computed(() => String(route.params.slug))
 const { product, related } = useProduct(slug)
 const { recentProducts, track } = useRecentlyViewed()
 const wishlist = useWishlist()
+const cart = useCart()
+const router = useRouter()
 
 const qty = ref(1)
 const toast = ref('')
@@ -105,24 +107,23 @@ onMounted(() => {
   onUnmounted(() => window.removeEventListener('scroll', onScroll))
 })
 
-function onAddToCart() {
+function onAddToCart(options?: { color?: string; size?: string }) {
   if (!product.value) return
+  cart.add(product.value.id, qty.value, options)
   toast.value = `${product.value.name} × ${qty.value} added to cart`
   setTimeout(() => { toast.value = '' }, 2500)
 }
 
-function onBuyNow() {
-  onAddToCart()
-  setTimeout(() => {
-    toast.value = 'Proceeding to checkout…'
-    setTimeout(() => { toast.value = '' }, 2500)
-  }, 400)
+function onBuyNow(options?: { color?: string; size?: string }) {
+  if (!product.value) return
+  cart.add(product.value.id, qty.value, options)
+  router.push('/checkout')
 }
 
 useSeoMeta({
   title: () => product.value
-    ? `${product.value.name} | ${product.value.brand} | Lampe`
-    : 'Product | Lampe',
+    ? `${product.value.name} | ${product.value.brand} | DINMANS`
+    : 'Product | DINMANS',
   description: () => product.value?.description ?? '',
   ogTitle: () => product.value?.name,
   ogDescription: () => product.value?.description,

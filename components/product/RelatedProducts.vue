@@ -11,6 +11,7 @@
         :product="product"
         :index="index"
         :animate="false"
+        @add-to-cart="onAddToCart"
       />
     </div>
   </section>
@@ -22,4 +23,10 @@ import type { Product } from '~/types/product'
 defineProps<{
   products: Product[]
 }>()
+
+const cart = useCart()
+
+function onAddToCart(product: Product) {
+  cart.add(product.id, 1)
+}
 </script>

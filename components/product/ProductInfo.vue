@@ -124,11 +124,11 @@
           </button>
         </div>
 
-        <button type="button" class="btn-primary flex-1 min-w-[140px]" :disabled="!product.inStock" @click="$emit('addToCart')">
+        <button type="button" class="btn-primary flex-1 min-w-[140px]" :disabled="!product.inStock" @click="emitAddToCart">
           <ShoppingBag :size="16" />
           Add to Cart
         </button>
-        <button type="button" class="btn-secondary flex-1 min-w-[140px]" :disabled="!product.inStock" @click="$emit('buyNow')">
+        <button type="button" class="btn-secondary flex-1 min-w-[140px]" :disabled="!product.inStock" @click="emitBuyNow">
           Buy Now
         </button>
       </div>
@@ -216,9 +216,9 @@ const props = defineProps<{
   product: Product
 }>()
 
-defineEmits<{
-  addToCart: []
-  buyNow: []
+const emit = defineEmits<{
+  addToCart: [payload: { color?: string; size?: string }]
+  buyNow: [payload: { color?: string; size?: string }]
 }>()
 
 const wishlist = useWishlist()
@@ -235,4 +235,19 @@ const discount = computed(() => {
   if (!props.product.oldPrice) return null
   return Math.round(((props.product.oldPrice - props.product.price) / props.product.oldPrice) * 100)
 })
+
+function selectionPayload() {
+  return {
+    color: selectedColor.value || undefined,
+    size: selectedSize.value || undefined,
+  }
+}
+
+function emitAddToCart() {
+  emit('addToCart', selectionPayload())
+}
+
+function emitBuyNow() {
+  emit('buyNow', selectionPayload())
+}
 </script>

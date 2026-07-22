@@ -72,13 +72,13 @@
         <button type="button" class="btn-primary flex-1 !py-2.5 !text-xs" @click.stop="onAdd($event)">
           Add to Cart
         </button>
-        <NuxtLink
-          :to="`/product/${product.slug}`"
+        <button
+          type="button"
           class="btn-secondary flex-1 !py-2.5 !text-xs !border-white !text-white hover:!bg-white hover:!text-secondary"
-          @click.stop
+          @click.stop="onBuyNow($event)"
         >
           Buy Now
-        </NuxtLink>
+        </button>
       </div>
     </div>
 
@@ -155,6 +155,8 @@ const emit = defineEmits<{
 
 const wishlist = useWishlist()
 const compare = useCompare()
+const cart = useCart()
+const router = useRouter()
 const { ripple, pop } = useMotion()
 const hovered = ref(false)
 
@@ -175,6 +177,12 @@ function onCompare() {
 function onAdd(e: MouseEvent) {
   ripple(e)
   emit('addToCart', props.product)
+}
+
+function onBuyNow(e: MouseEvent) {
+  ripple(e)
+  cart.add(props.product.id, 1)
+  router.push('/checkout')
 }
 
 function badgeLabel(badge: ProductBadge) {

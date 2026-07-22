@@ -2,22 +2,22 @@
 const categories = [
   {
     title: 'Chandeliers',
-    image: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=800&h=1000&fit=crop',
+    image: '/collection_1.jpg',
     to: '/lighting/chandeliers',
   },
   {
     title: 'Pendants',
-    image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800&h=1000&fit=crop',
+    image: '/collection_2.jpg',
     to: '/lighting/pendant-lights',
   },
   {
     title: 'Wall Lights',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=1000&fit=crop',
+    image: '/homepages/a1.jpg',
     to: '/lighting/wall-lights',
   },
   {
     title: 'Floor Lamps',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&h=1000&fit=crop',
+    image: '/collection_3.jpg',
     to: '/lighting/floor-lamps',
   },
 ]

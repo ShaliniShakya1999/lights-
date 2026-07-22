@@ -1,7 +1,7 @@
 <template>
   <section class="relative h-[88vh] min-h-[560px] overflow-hidden">
     <img
-      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop"
+      src="/hero_1.jpg"
       alt="Luxury interior lighting"
       class="absolute inset-0 h-full w-full object-cover scale-105 animate-[heroZoom_18s_ease-in-out_infinite_alternate]"
     >

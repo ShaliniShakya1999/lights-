@@ -12,11 +12,12 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title: 'Lampe | Luxury Lighting & Home Decor',
+      title: 'DINMANS | Luxury Lighting & Home Decor',
       meta: [
-        { name: 'description', content: 'Illuminate Every Corner with Timeless Luxury. World-class luxury interior lighting & home decor.' },
+        { name: 'description', content: 'DINMANS — Inspiring All. World-class luxury interior lighting & home decor.' },
       ],
       link: [
+        { rel: 'icon', type: 'image/png', href: '/logo.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap' },

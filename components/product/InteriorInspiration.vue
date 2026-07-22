@@ -4,7 +4,7 @@
       <p class="section-label">Styled Spaces</p>
       <h2 class="mt-2 font-playfair text-3xl sm:text-4xl">Interior Inspiration</h2>
       <p class="mt-3 max-w-xl text-sm text-text-muted">
-        Real homes and hospitality projects featuring Lampe lighting compositions.
+        Real homes and hospitality projects featuring DINMANS lighting compositions.
       </p>
     </div>
 

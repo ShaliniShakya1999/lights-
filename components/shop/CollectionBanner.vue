@@ -56,7 +56,7 @@ withDefaults(defineProps<{
 }>(), {
   title: 'Luxury Chandeliers Collection',
   subtitle: 'Discover premium handcrafted lighting collections for modern interiors.',
-  image: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=1400&h=1000&fit=crop',
+  image: '/collection_1.jpg',
 })
 
 const { ripple } = useMotion()

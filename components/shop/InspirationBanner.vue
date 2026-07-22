@@ -5,7 +5,7 @@
     data-animate="zoom-in"
   >
     <img
-      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=900&fit=crop"
+      src="/hero_2.jpg"
       alt="Interior inspiration with luxury lighting"
       class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-out hover:scale-105"
     >

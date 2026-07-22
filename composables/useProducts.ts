@@ -1,4 +1,4 @@
-import type { FilterState, Product, SortOption } from '~/types/product'
+import type { CartItem, FilterState, Product, SortOption } from '~/types/product'
 import { products } from '~/data/products'
 
 export function formatPrice(amount: number): string {
@@ -240,4 +240,83 @@ export function useCompare() {
   }
 
   return { ids, toggle, has }
+}
+
+function cartLineKey(item: Pick<CartItem, 'productId' | 'color' | 'size'>) {
+  return `${item.productId}::${item.color ?? ''}::${item.size ?? ''}`
+}
+
+export function useCart() {
+  const items = useState<CartItem[]>('cart-items', () => [])
+
+  const lines = computed(() =>
+    items.value
+      .map((item) => {
+        const product = products.find(p => p.id === item.productId)
+        if (!product) return null
+        return { ...item, product, lineTotal: product.price * item.qty }
+      })
+      .filter((line): line is CartItem & { product: Product; lineTotal: number } => Boolean(line)),
+  )
+
+  const count = computed(() => items.value.reduce((sum, item) => sum + item.qty, 0))
+  const subtotal = computed(() => lines.value.reduce((sum, line) => sum + line.lineTotal, 0))
+  const shipping = computed(() => (subtotal.value >= 50000 || subtotal.value === 0 ? 0 : 999))
+  const total = computed(() => subtotal.value + shipping.value)
+
+  function add(
+    productId: string,
+    qty = 1,
+    options?: { color?: string; size?: string },
+  ) {
+    const key = cartLineKey({ productId, color: options?.color, size: options?.size })
+    const existing = items.value.find(item => cartLineKey(item) === key)
+    if (existing) {
+      existing.qty += qty
+      items.value = [...items.value]
+      return
+    }
+    items.value = [
+      ...items.value,
+      {
+        productId,
+        qty,
+        color: options?.color,
+        size: options?.size,
+      },
+    ]
+  }
+
+  function setQty(productId: string, qty: number, options?: { color?: string; size?: string }) {
+    const key = cartLineKey({ productId, color: options?.color, size: options?.size })
+    if (qty <= 0) {
+      items.value = items.value.filter(item => cartLineKey(item) !== key)
+      return
+    }
+    items.value = items.value.map((item) =>
+      cartLineKey(item) === key ? { ...item, qty } : item,
+    )
+  }
+
+  function remove(productId: string, options?: { color?: string; size?: string }) {
+    const key = cartLineKey({ productId, color: options?.color, size: options?.size })
+    items.value = items.value.filter(item => cartLineKey(item) !== key)
+  }
+
+  function clear() {
+    items.value = []
+  }
+
+  return {
+    items,
+    lines,
+    count,
+    subtotal,
+    shipping,
+    total,
+    add,
+    setQty,
+    remove,
+    clear,
+  }
 }

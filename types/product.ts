@@ -74,6 +74,13 @@ export type Product = {
   createdAt: string
 }
 
+export type CartItem = {
+  productId: string
+  qty: number
+  color?: string
+  size?: string
+}
+
 export type SortOption =
   | 'featured'
   | 'newest'
