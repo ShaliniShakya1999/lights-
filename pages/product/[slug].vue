@@ -56,7 +56,7 @@
   </div>
 
   <div v-else class="mx-auto max-w-[1440px] px-4 py-32 text-center">
-    <h1 class="font-playfair text-4xl">Product Not Found</h1>
+    <h1 class="heading-page">Product Not Found</h1>
     <p class="mt-4 text-text-muted">This lighting piece may have been moved or retired.</p>
     <NuxtLink to="/lighting/chandeliers" class="btn-primary mt-8 inline-flex">
       Browse Collection

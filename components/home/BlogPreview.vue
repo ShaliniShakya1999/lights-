@@ -4,7 +4,7 @@
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between" data-animate="fade-up">
         <div>
           <p class="section-label">From The Journal</p>
-          <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">Blog</h2>
+          <h2 class="mt-3 heading-section">Blog</h2>
         </div>
         <NuxtLink to="/blog" class="btn-ghost w-fit">All Articles</NuxtLink>
       </div>

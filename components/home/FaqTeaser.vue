@@ -3,8 +3,8 @@
     <div class="mx-auto max-w-[900px] px-4 sm:px-6 lg:px-10">
       <div class="text-center" data-animate="fade-up">
         <p class="section-label">FAQ</p>
-        <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">Questions, Answered</h2>
-        <p class="mt-4 text-sm text-text-muted sm:text-base">
+        <h2 class="mt-3 heading-section">Questions, Answered</h2>
+        <p class="body-lead mt-4">
           Quick answers before you shop — or explore our full FAQ.
         </p>
       </div>

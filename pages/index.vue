@@ -26,6 +26,5 @@ useSeoMeta({
     <HomeInstagram />
     <HomeBlogPreview />
     <HomeFaqTeaser />
-    <HomeNewsletter />
   </div>
 </template>

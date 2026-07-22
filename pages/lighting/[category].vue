@@ -81,7 +81,7 @@
         Filter
         <span
           v-if="activeFilterCount"
-          class="ml-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 text-[10px] text-secondary"
+          class="ml-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-accent px-1.5 text-[10px] text-white"
         >
           {{ activeFilterCount }}
         </span>

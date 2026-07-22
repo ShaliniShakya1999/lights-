@@ -10,10 +10,10 @@ const categories = productCategories
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mx-auto max-w-2xl text-center">
         <p class="section-label" data-animate="fade-up">Featured Categories</p>
-        <h2 class="mt-3 font-playfair text-4xl sm:text-5xl" data-animate="fade-up" data-delay="0.08">
+        <h2 class="mt-3 heading-section" data-animate="fade-up" data-delay="0.08">
           Shop By Category
         </h2>
-        <p class="mt-4 text-sm text-text-muted sm:text-base" data-animate="fade-up" data-delay="0.16">
+        <p class="body-lead mt-4" data-animate="fade-up" data-delay="0.16">
           Explore lighting designed for every architectural moment.
         </p>
       </div>

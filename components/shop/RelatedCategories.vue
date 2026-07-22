@@ -2,7 +2,7 @@
   <section class="space-y-8">
     <div data-animate="fade-up">
       <p class="section-label">Discover More</p>
-      <h2 class="mt-2 font-playfair text-3xl sm:text-4xl">Related Categories</h2>
+      <h2 class="mt-2 heading-section-sm">Related Categories</h2>
     </div>
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6" data-stagger-grid>
       <NuxtLink

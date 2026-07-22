@@ -34,13 +34,13 @@
         DINMANS Design Studio
       </p>
       <h1
-        class="mx-auto mt-6 max-w-5xl font-playfair text-[2.35rem] leading-[1.12] text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl hero-fade"
+        class="heading-hero mx-auto mt-6 text-white hero-fade"
         style="animation-delay: 0.15s"
       >
         Illuminate Every Corner with Luxury Lighting
       </h1>
       <p
-        class="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base md:text-lg hero-fade"
+        class="body-lead mx-auto mt-6 max-w-2xl !text-white/80 hero-fade"
         style="animation-delay: 0.28s"
       >
         Discover handcrafted chandeliers, pendant lights and designer lamps.
@@ -51,7 +51,7 @@
       >
         <NuxtLink
           to="/lighting/chandeliers"
-          class="btn-primary !bg-accent !text-secondary shadow-gold min-w-[160px]"
+          class="btn-primary shadow-gold min-w-[160px]"
           @click="ripple"
         >
           Shop Collection
@@ -98,16 +98,12 @@ const { ripple } = useMotion()
 
 const slides = [
   {
+    image: '/27.jpeg',
+    title: 'Divine wall lighting',
+  },
+  {
     image: '/homepages/d4.jpg',
     title: 'Luxury living room lighting',
-  },
-  {
-    image: '/homepages/c3.jpg',
-    title: 'Modern interior ambient light',
-  },
-  {
-    image: '/homepages/slider_new1.jpg',
-    title: 'Designer chandelier interior',
   },
 ]
 

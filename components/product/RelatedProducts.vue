@@ -2,7 +2,7 @@
   <section v-if="products.length" class="space-y-8">
     <div>
       <p class="section-label">You May Also Like</p>
-      <h2 class="mt-2 font-playfair text-3xl sm:text-4xl">Related Products</h2>
+      <h2 class="mt-2 heading-section-sm">Related Products</h2>
     </div>
     <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4" data-stagger-grid>
       <ShopProductCard

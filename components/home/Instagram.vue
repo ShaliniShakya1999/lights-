@@ -3,8 +3,8 @@
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mx-auto max-w-2xl text-center" data-animate="fade-up">
         <p class="section-label">Instagram Gallery</p>
-        <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">@dinmans</h2>
-        <p class="mt-4 text-sm text-text-muted">Follow our latest installations and styling moments.</p>
+        <h2 class="mt-3 heading-section">@dinmans</h2>
+        <p class="body-lead mt-4">Follow our latest installations and styling moments.</p>
       </div>
       <div class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4" data-stagger-grid>
         <a

@@ -16,14 +16,14 @@
     <div class="relative z-10 flex min-h-[300px] lg:min-h-[420px] flex-col justify-center px-8 py-14 sm:px-12 lg:px-16 xl:max-w-2xl">
       <p class="section-label !text-accent" data-animate="fade-up">Premium Collection</p>
       <h1
-        class="mt-4 font-playfair text-4xl leading-[1.12] text-white sm:text-5xl lg:text-[3.4rem] text-balance"
+        class="mt-4 heading-section text-white"
         data-animate="fade-up"
         data-delay="0.1"
       >
         {{ title }}
       </h1>
       <p
-        class="mt-5 max-w-md text-base leading-relaxed text-white/70"
+        class="body-lead mt-5 max-w-md !text-white/70"
         data-animate="fade-up"
         data-delay="0.2"
       >

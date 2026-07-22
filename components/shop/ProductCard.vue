@@ -181,7 +181,7 @@ function badgeLabel(badge: ProductBadge) {
 function badgeClass(badge: ProductBadge) {
   const map: Record<ProductBadge, string> = {
     luxury: 'bg-secondary text-white',
-    bestseller: 'bg-accent text-secondary',
+    bestseller: 'bg-accent text-white',
     new: 'bg-[#2D6A4F] text-white',
     sale: 'bg-[#9B2226] text-white',
     limited: 'bg-[#7C3AED] text-white',

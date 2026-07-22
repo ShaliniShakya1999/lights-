@@ -4,7 +4,7 @@
 
     <div class="mt-2 mb-10" data-animate="fade-up">
       <p class="section-label">Almost there</p>
-      <h1 class="mt-3 font-playfair text-3xl sm:text-4xl lg:text-5xl">Checkout</h1>
+      <h1 class="mt-3 heading-section-sm lg:text-5xl">Checkout</h1>
       <p class="mt-3 max-w-xl text-text-muted">
         Enter delivery details to complete your luxury lighting order.
       </p>

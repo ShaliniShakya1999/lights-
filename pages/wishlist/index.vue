@@ -25,8 +25,8 @@ function onAdd(product: Product) {
   <div class="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 lg:px-10 lg:py-20">
     <div class="max-w-2xl">
       <p class="section-label">Saved Pieces</p>
-      <h1 class="mt-3 font-playfair text-4xl sm:text-5xl">Your Wishlist</h1>
-      <p class="mt-3 text-sm text-text-muted">
+      <h1 class="mt-3 heading-page">Your Wishlist</h1>
+      <p class="body-lead mt-3">
         {{ items.length ? `${items.length} saved lighting piece${items.length === 1 ? '' : 's'}.` : 'You have not saved any pieces yet.' }}
       </p>
     </div>

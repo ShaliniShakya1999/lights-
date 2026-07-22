@@ -4,8 +4,8 @@
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between" data-animate="fade-up">
         <div class="max-w-2xl">
           <p class="section-label">Testimonials</p>
-          <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">What Our Clients Say</h2>
-          <p class="mt-4 text-sm text-text-muted sm:text-base">
+          <h2 class="mt-3 heading-section">What Our Clients Say</h2>
+          <p class="body-lead mt-4">
             Real feedback from homes and projects lit with DINMANS.
           </p>
         </div>
@@ -118,11 +118,11 @@ const reviews = [
 
 <style scoped>
 :deep(.testimonials-swiper .swiper-pagination-bullet) {
-  background: #D4AF37;
+  background: #E8782A;
   opacity: 0.35;
 }
 :deep(.testimonials-swiper .swiper-pagination-bullet-active) {
   opacity: 1;
-  background: #D4AF37;
+  background: #E8782A;
 }
 </style>

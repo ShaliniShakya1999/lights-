@@ -3,7 +3,7 @@
     <div class="flex items-end justify-between gap-4">
       <div>
         <p class="section-label">Continue Exploring</p>
-        <h2 class="mt-2 font-playfair text-3xl sm:text-4xl">Recently Viewed</h2>
+        <h2 class="mt-2 heading-section-sm">Recently Viewed</h2>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4" data-stagger-grid>

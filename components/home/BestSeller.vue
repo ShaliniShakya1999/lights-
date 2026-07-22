@@ -4,8 +4,8 @@
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div data-animate="fade-up">
           <p class="section-label">Most Loved</p>
-          <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">Best Sellers</h2>
-          <p class="mt-3 max-w-lg text-sm text-text-muted sm:text-base">
+          <h2 class="mt-3 heading-section">Best Sellers</h2>
+          <p class="body-lead mt-3 max-w-lg">
             Our most requested lighting pieces — chosen by homeowners and designers alike.
           </p>
         </div>

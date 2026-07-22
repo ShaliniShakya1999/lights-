@@ -4,7 +4,7 @@
 
     <div class="mt-2 mb-10" data-animate="fade-up">
       <p class="section-label">Your selection</p>
-      <h1 class="mt-3 font-playfair text-3xl sm:text-4xl lg:text-5xl">Shopping Cart</h1>
+      <h1 class="mt-3 heading-section-sm lg:text-5xl">Shopping Cart</h1>
       <p class="mt-3 max-w-xl text-text-muted">
         Review your lighting pieces before checkout. White-glove delivery available on eligible orders.
       </p>

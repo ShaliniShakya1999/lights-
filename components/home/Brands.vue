@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="text-center" data-animate="fade-up">
         <p class="section-label">Featured Brands</p>
-        <h2 class="mt-3 font-playfair text-3xl sm:text-4xl">Trusted Ateliers</h2>
+        <h2 class="mt-3 heading-section-sm">Trusted Ateliers</h2>
       </div>
       <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
         <NuxtLink

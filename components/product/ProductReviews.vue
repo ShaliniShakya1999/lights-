@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
       <div>
         <p class="section-label">Customer Voices</p>
-        <h2 class="mt-2 font-playfair text-3xl sm:text-4xl">Customer Reviews</h2>
+        <h2 class="mt-2 heading-section-sm">Customer Reviews</h2>
       </div>
       <div class="flex items-center gap-4 rounded-luxury border border-border bg-white px-6 py-4 shadow-soft">
         <span class="font-playfair text-4xl text-text">{{ product.rating }}</span>

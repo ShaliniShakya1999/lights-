@@ -38,7 +38,7 @@
 
             <div class="flex flex-col p-6 sm:p-8 lg:p-10">
               <p class="text-xs uppercase tracking-[0.2em] text-text-muted">{{ product.brand }}</p>
-              <h3 class="mt-2 font-playfair text-3xl leading-snug">{{ product.name }}</h3>
+              <h3 class="mt-2 heading-section-sm">{{ product.name }}</h3>
               <div class="mt-3 flex items-center gap-2 text-sm">
                 <span class="text-accent">★ {{ product.rating }}</span>
                 <span class="text-text-muted">({{ product.reviewCount }} reviews)</span>

@@ -4,7 +4,7 @@
 
     <div class="mt-2 mb-10 max-w-2xl" data-animate="fade-up">
       <p class="section-label">Get in touch</p>
-      <h1 class="mt-3 font-playfair text-4xl sm:text-5xl lg:text-6xl">Contact</h1>
+      <h1 class="mt-3 heading-section lg:text-6xl">Contact</h1>
       <p class="mt-5 text-text-muted">
         Reach our concierge team for product advice, installation, or order support.
       </p>

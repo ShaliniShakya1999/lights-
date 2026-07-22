@@ -11,7 +11,7 @@
         </svg>
       </div>
     </div>
-    <h3 class="font-playfair text-3xl text-text">No Products Found</h3>
+    <h3 class="heading-section-sm text-text">No Products Found</h3>
     <p class="mt-3 max-w-md text-sm text-text-muted leading-relaxed">
       We couldn’t find lighting that matches your current filters. Try adjusting your selection or reset to explore the full collection.
     </p>

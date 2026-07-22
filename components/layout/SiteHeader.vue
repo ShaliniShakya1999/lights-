@@ -84,7 +84,7 @@
             <Heart :size="18" />
             <span
               v-if="wishlist.ids.value.length"
-              class="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-secondary"
+              class="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-white"
             >
               {{ wishlist.ids.value.length }}
             </span>
@@ -98,7 +98,7 @@
             <GitCompareArrows :size="18" />
             <span
               v-if="compare.ids.value.length"
-              class="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-secondary"
+              class="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-white"
             >
               {{ compare.ids.value.length }}
             </span>
@@ -114,7 +114,7 @@
               <ShoppingBag :size="18" />
               <span
                 v-if="cart.count.value"
-                class="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-secondary"
+                class="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent px-1 text-[10px] font-medium text-white"
               >
                 {{ cart.count.value }}
               </span>

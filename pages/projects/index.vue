@@ -11,10 +11,10 @@
       </div>
       <div class="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
         <p class="section-label !text-accent">RIF Gallery</p>
-        <h1 class="mt-4 max-w-3xl font-playfair text-4xl leading-tight sm:text-5xl lg:text-6xl">
+        <h1 class="heading-hero mt-4 max-w-3xl text-white">
           Lighting designs that inspire every space
         </h1>
-        <p class="mt-5 max-w-xl text-sm leading-relaxed text-white/70 sm:text-base">
+        <p class="body-lead mt-5 max-w-xl !text-white/70">
           A curated selection from our product library — foldable lamps, crystal glow, and sculptural ambient light.
         </p>
       </div>

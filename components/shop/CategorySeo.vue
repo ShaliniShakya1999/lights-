@@ -1,7 +1,7 @@
 <template>
   <section class="rounded-luxury border border-border bg-white p-8 sm:p-10 lg:p-12" data-animate="fade-up">
     <p class="section-label">Buying Guide</p>
-    <h2 class="mt-3 font-playfair text-3xl sm:text-4xl">About {{ category }}</h2>
+    <h2 class="mt-3 heading-section-sm">About {{ category }}</h2>
     <div class="mt-6 max-w-3xl space-y-4 text-sm leading-relaxed text-text-muted sm:text-base">
       <p>{{ intro }}</p>
       <p>{{ guide }}</p>

@@ -4,8 +4,8 @@
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div data-animate="fade-up">
           <p class="section-label">Just Arrived</p>
-          <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">New Arrivals</h2>
-          <p class="mt-3 max-w-lg text-sm text-text-muted sm:text-base">
+          <h2 class="mt-3 heading-section">New Arrivals</h2>
+          <p class="body-lead mt-3 max-w-lg">
             Fresh silhouettes and finishes for the season’s most refined interiors.
           </p>
         </div>

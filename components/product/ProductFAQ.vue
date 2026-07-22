@@ -2,7 +2,7 @@
   <section class="space-y-8">
     <div>
       <p class="section-label">Need Clarity</p>
-      <h2 class="mt-2 font-playfair text-3xl sm:text-4xl">Frequently Asked Questions</h2>
+      <h2 class="mt-2 heading-section-sm">Frequently Asked Questions</h2>
     </div>
 
     <div class="space-y-3">

@@ -3,8 +3,8 @@
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mx-auto max-w-2xl text-center" data-animate="fade-up">
         <p class="section-label">Curated Looks</p>
-        <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">Shop by Style</h2>
-        <p class="mt-4 text-sm text-text-muted sm:text-base">
+        <h2 class="mt-3 heading-section">Shop by Style</h2>
+        <p class="body-lead mt-4">
           Find the lighting language that matches your interior story.
         </p>
       </div>

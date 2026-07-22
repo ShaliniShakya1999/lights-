@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <p class="text-xs uppercase tracking-[0.22em] text-text-muted">{{ product.brand }}</p>
-    <h1 class="mt-3 font-playfair text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight text-balance">
+    <h1 class="mt-3 heading-section-sm lg:text-[2.75rem] leading-tight text-balance">
       {{ product.name }}
     </h1>
 

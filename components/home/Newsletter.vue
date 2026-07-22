@@ -2,7 +2,7 @@
   <section class="py-20 lg:py-24 bg-secondary text-white">
     <div class="mx-auto max-w-[720px] px-4 text-center sm:px-6" data-animate="fade-up">
       <p class="section-label !text-accent">Newsletter</p>
-      <h2 class="mt-3 font-playfair text-4xl sm:text-5xl">Stay Inspired</h2>
+      <h2 class="mt-3 heading-section">Stay Inspired</h2>
       <p class="mt-4 text-sm text-white/65 sm:text-base">
         New collections, design tips, and exclusive offers — delivered monthly.
       </p>
