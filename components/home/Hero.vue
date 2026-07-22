@@ -1,53 +1,54 @@
 <template>
-  <section class="relative h-[92vh] min-h-[620px] overflow-hidden bg-secondary">
-    <ClientOnly>
-      <Swiper
-        :modules="modules"
-        :slides-per-view="1"
-        :loop="true"
-        :effect="'fade'"
-        :fade-effect="{ crossFade: true }"
-        :speed="1200"
-        :autoplay="{ delay: 5200, disableOnInteraction: false }"
-        :pagination="{ clickable: true }"
-        :navigation="{ prevEl: '.hero-prev', nextEl: '.hero-next' }"
-        class="hero-swiper absolute inset-0 h-full w-full"
-        @slide-change="onSlideChange"
+  <section
+    ref="sectionRef"
+    class="relative flex min-h-[100svh] items-center overflow-hidden bg-secondary"
+  >
+    <div
+      class="absolute inset-[-12%] will-change-transform"
+      :style="{ transform: `translate3d(0, ${parallaxY}px, 0) scale(1.1)` }"
+    >
+      <div
+        v-for="(slide, idx) in slides"
+        :key="slide.image"
+        class="absolute inset-0 transition-opacity duration-[1600ms] ease-out"
+        :class="idx === activeIndex ? 'opacity-100' : 'opacity-0'"
       >
-        <SwiperSlide v-for="(slide, idx) in slides" :key="slide.image">
-          <div class="relative h-full w-full overflow-hidden">
-            <img
-              :src="slide.image"
-              :alt="slide.title"
-              class="hero-slide-img h-full w-full object-cover"
-              :class="{ 'is-active': activeIndex === idx }"
-            >
-            <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/70" />
-            <div class="absolute inset-0 hero-vignette" />
-          </div>
-        </SwiperSlide>
-      </Swiper>
-    </ClientOnly>
+        <img
+          :src="slide.image"
+          :alt="slide.title"
+          class="h-full w-full object-cover"
+          :class="idx === activeIndex ? 'hero-kenburns' : ''"
+        >
+      </div>
+    </div>
 
-    <div class="pointer-events-none relative z-10 mx-auto flex h-full max-w-[1440px] flex-col items-center justify-center px-4 pb-28 pt-28 text-center text-white lg:pt-32">
-      <p class="section-label !text-accent tracking-[0.35em] hero-fade" style="animation-delay: 0.1s">
+    <!-- ~35% dark overlay -->
+    <div class="absolute inset-0 bg-black/35" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/55" />
+
+    <div class="relative z-10 mx-auto w-full max-w-[1440px] px-4 pb-28 pt-32 text-center sm:px-6 lg:px-10 lg:pb-32 lg:pt-36">
+      <p
+        class="section-label !text-accent tracking-[0.35em] hero-fade"
+        style="animation-delay: 0.05s"
+      >
         DINMANS Design Studio
       </p>
       <h1
-        :key="activeIndex + '-title'"
-        class="mt-6 font-playfair text-5xl leading-[1.08] sm:text-6xl lg:text-7xl xl:text-[5.25rem] text-balance text-white hero-fade"
+        class="mx-auto mt-6 max-w-5xl font-playfair text-[2.35rem] leading-[1.12] text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl hero-fade"
         style="animation-delay: 0.15s"
       >
-        {{ slides[activeIndex]?.title }}
+        Illuminate Every Corner with Luxury Lighting
       </h1>
       <p
-        :key="activeIndex + '-sub'"
-        class="mt-7 max-w-2xl text-base sm:text-lg text-white/75 leading-relaxed hero-fade"
+        class="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base md:text-lg hero-fade"
         style="animation-delay: 0.28s"
       >
-        {{ slides[activeIndex]?.subtitle }}
+        Discover handcrafted chandeliers, pendant lights and designer lamps.
       </p>
-      <div class="pointer-events-auto mt-10 flex flex-wrap justify-center gap-4 hero-fade" style="animation-delay: 0.4s">
+      <div
+        class="mt-10 flex flex-wrap items-center justify-center gap-4 hero-fade"
+        style="animation-delay: 0.4s"
+      >
         <NuxtLink
           to="/lighting/chandeliers"
           class="btn-primary !bg-accent !text-secondary shadow-gold min-w-[160px]"
@@ -57,7 +58,7 @@
         </NuxtLink>
         <NuxtLink
           to="/lighting/lamps"
-          class="btn-secondary !border-white/80 !text-white hover:!bg-white hover:!text-secondary min-w-[160px]"
+          class="btn-secondary !border-white/85 !text-white hover:!bg-white hover:!text-secondary min-w-[160px]"
           @click="ripple"
         >
           Explore Catalog
@@ -65,94 +66,108 @@
       </div>
     </div>
 
-    <div class="pointer-events-auto absolute inset-x-0 top-1/2 z-20 hidden -translate-y-1/2 px-4 sm:flex sm:justify-between lg:px-8">
-      <button type="button" class="hero-prev flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/25 text-white backdrop-blur-md transition-all hover:border-accent hover:text-accent" aria-label="Previous">
-        <ChevronLeft :size="20" />
-      </button>
-      <button type="button" class="hero-next flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/25 text-white backdrop-blur-md transition-all hover:border-accent hover:text-accent" aria-label="Next">
-        <ChevronRight :size="20" />
-      </button>
-    </div>
-
-    <div class="absolute inset-x-0 bottom-0 z-20 border-t border-white/10 bg-black/35 backdrop-blur-md">
-      <div class="mx-auto grid max-w-[1440px] grid-cols-2 gap-px">
-        <div
-          v-for="badge in trustBadges"
-          :key="badge.label"
-          class="flex flex-col items-center justify-center gap-1 px-4 py-5 text-center sm:py-6"
-        >
-          <p class="font-playfair text-xl text-accent sm:text-2xl">{{ badge.stat }}</p>
-          <p class="text-[10px] uppercase tracking-[0.2em] text-white/65 sm:text-[11px]">{{ badge.label }}</p>
-        </div>
+    <div class="absolute inset-x-0 bottom-8 z-20 flex flex-col items-center gap-5 sm:bottom-10">
+      <div class="flex gap-2">
+        <button
+          v-for="(_, idx) in slides"
+          :key="idx"
+          type="button"
+          class="h-1.5 rounded-full transition-all duration-500"
+          :class="idx === activeIndex ? 'w-8 bg-accent' : 'w-2.5 bg-white/40 hover:bg-white/70'"
+          :aria-label="`Show image ${idx + 1}`"
+          @click="goTo(idx)"
+        />
       </div>
+      <a
+        href="#trust"
+        class="group flex flex-col items-center gap-2 text-white/70 transition-colors hover:text-accent"
+        aria-label="Scroll to content"
+      >
+        <span class="text-[10px] uppercase tracking-[0.28em]">Scroll</span>
+        <span class="scroll-line h-8 w-px bg-gradient-to-b from-accent to-transparent" />
+        <ChevronDown :size="16" class="animate-bounce" />
+      </a>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import 'swiper/css'
-import 'swiper/css/effect-fade'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
+import { ChevronDown } from 'lucide-vue-next'
 
 const { ripple } = useMotion()
-const modules = [Autoplay, EffectFade, Navigation, Pagination]
-const activeIndex = ref(0)
 
 const slides = [
   {
-    image: '/homepages/c3.jpg',
-    title: 'Luxury Lighting for Modern Homes',
-    subtitle: 'Crafted chandeliers, designer lamps and premium lighting solutions that transform every space.',
-  },
-  {
     image: '/homepages/d4.jpg',
-    title: 'Warm Interiors, Statement Light',
-    subtitle: 'Layered ambient lighting for living rooms, dining spaces, and designer residences.',
+    title: 'Luxury living room lighting',
   },
   {
-    image: '/27.jpeg',
-    title: 'Decorative Glow for Every Wall',
-    subtitle: 'From ethnic wall lamps to sculptural fixtures — light that inspires all.',
+    image: '/homepages/c3.jpg',
+    title: 'Modern interior ambient light',
+  },
+  {
+    image: '/homepages/slider_new1.jpg',
+    title: 'Designer chandelier interior',
   },
 ]
 
-const trustBadges = [
-  { stat: '500+', label: 'Products' },
-  { stat: 'Free', label: 'Shipping*' },
-]
+const sectionRef = ref<HTMLElement | null>(null)
+const activeIndex = ref(0)
+const parallaxY = ref(0)
+let timer: ReturnType<typeof setInterval> | null = null
 
-function onSlideChange(swiper: { realIndex: number }) {
-  activeIndex.value = swiper.realIndex
+function goTo(idx: number) {
+  activeIndex.value = idx
+  restartTimer()
 }
+
+function next() {
+  activeIndex.value = (activeIndex.value + 1) % slides.length
+}
+
+function restartTimer() {
+  if (timer) clearInterval(timer)
+  timer = setInterval(next, 5500)
+}
+
+onMounted(() => {
+  restartTimer()
+  const onScroll = () => {
+    const el = sectionRef.value
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const viewH = window.innerHeight
+    const progress = (rect.top + rect.height / 2 - viewH / 2) / viewH
+    parallaxY.value = Math.max(-60, Math.min(60, progress * -50))
+  }
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll)
+    if (timer) clearInterval(timer)
+  })
+})
 </script>
 
 <style scoped>
-.hero-vignette {
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.35) 100%);
+.hero-kenburns {
+  animation: heroKenburns 7s ease-out forwards;
 }
 
-.hero-slide-img {
-  transform: scale(1.08);
-  transition: transform 6.5s ease-out;
-}
-
-.hero-slide-img.is-active {
-  transform: scale(1);
+@keyframes heroKenburns {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
 }
 
 .hero-fade {
   opacity: 0;
-  animation: heroFadeUp 0.85s ease forwards;
+  animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes heroFadeUp {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(28px);
   }
   to {
     opacity: 1;
@@ -160,21 +175,12 @@ function onSlideChange(swiper: { realIndex: number }) {
   }
 }
 
-:deep(.hero-swiper .swiper-pagination) {
-  bottom: 6.5rem !important;
+.scroll-line {
+  animation: scrollPulse 1.8s ease-in-out infinite;
 }
 
-:deep(.hero-swiper .swiper-pagination-bullet) {
-  background: #D4AF37;
-  opacity: 0.4;
-  width: 8px;
-  height: 8px;
-}
-
-:deep(.hero-swiper .swiper-pagination-bullet-active) {
-  opacity: 1;
-  background: #D4AF37;
-  width: 24px;
-  border-radius: 999px;
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.35; transform: scaleY(0.7); }
+  50% { opacity: 1; transform: scaleY(1); }
 }
 </style>

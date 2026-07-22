@@ -12,19 +12,19 @@ module.exports = {
     extend: {
       colors: {
         accent: {
-          DEFAULT: '#D4AF37',
-          hover: '#C09B2A',
+          DEFAULT: '#C8A45D',
+          hover: '#D4AF37',
           soft: '#F7F1DE',
         },
-        secondary: '#1A1A1A',
-        background: '#F8F5F0',
+        secondary: '#111111',
+        background: '#F8F6F2',
         card: '#FFFFFF',
         text: {
           DEFAULT: '#111111',
           muted: '#6B7280',
         },
         border: '#E8E2D9',
-        charcoal: '#1A1A1A',
+        charcoal: '#111111',
         gold: '#D4AF37',
       },
       fontFamily: {
@@ -39,7 +39,7 @@ module.exports = {
         'luxury-hover': '0 28px 60px rgba(17, 17, 17, 0.12)',
         soft: '0 8px 24px rgba(17, 17, 17, 0.04)',
         glass: '0 8px 32px rgba(17, 17, 17, 0.08)',
-        gold: '0 12px 28px rgba(212, 175, 55, 0.35)',
+        gold: '0 12px 28px rgba(200, 164, 93, 0.35)',
       },
       transitionDuration: {
         luxury: '250ms',

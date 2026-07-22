@@ -16,7 +16,7 @@
   }
 
   ::selection {
-    @apply bg-accent/20 text-text;
+    @apply bg-accent/25 text-text;
   }
 }
 

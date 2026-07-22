@@ -48,7 +48,7 @@
       </div>
 
       <div class="absolute right-3 top-3 z-10 flex flex-col gap-2 opacity-100 sm:opacity-0 sm:translate-x-3 sm:group-hover:opacity-100 sm:group-hover:translate-x-0 transition-all duration-500 ease-out">
-        <button type="button" class="icon-btn flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-soft text-text hover:text-accent" :class="{ 'animate-heart-pop !text-accent': wishlisted }" :aria-label="wishlisted ? 'Remove wishlist' : 'Wishlist'" @click.stop="onWishlist">
+        <button type="button" class="icon-btn flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-soft text-text hover:text-[#C45C6A]" :class="{ 'animate-heart-pop !text-[#C45C6A]': wishlisted }" :aria-label="wishlisted ? 'Remove wishlist' : 'Wishlist'" @click.stop="onWishlist">
           <Heart :size="15" :fill="wishlisted ? 'currentColor' : 'none'" />
         </button>
         <button type="button" class="icon-btn flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-soft text-text hover:text-accent" :class="{ '!text-accent': compared }" aria-label="Compare" @click.stop="onCompare">

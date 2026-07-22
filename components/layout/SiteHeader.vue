@@ -45,7 +45,8 @@
                         <img :src="cat.image" :alt="cat.title" class="h-full w-full object-cover transition-transform duration-500 group-hover/item:scale-105">
                       </div>
                       <p class="mt-3 text-sm font-medium text-text">{{ cat.title }}</p>
-                      <p class="mt-0.5 text-[11px] text-text-muted">{{ cat.count }}</p>
+                      <p class="mt-0.5 text-[11px] text-text-muted">{{ cat.subtitle }}</p>
+                      <p class="mt-1 text-[11px] text-accent">{{ cat.count }}</p>
                     </NuxtLink>
                   </div>
                 </div>
@@ -74,9 +75,9 @@
           >
             <Search :size="18" />
           </button>
-          <button
-            type="button"
-            class="relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-luxury"
+          <NuxtLink
+            to="/wishlist"
+            class="relative flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 hover:scale-110"
             :class="iconBtnClass"
             aria-label="Wishlist"
           >
@@ -87,7 +88,7 @@
             >
               {{ wishlist.ids.value.length }}
             </span>
-          </button>
+          </NuxtLink>
           <button
             type="button"
             class="relative hidden sm:flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-luxury"
@@ -233,6 +234,7 @@
 <script setup lang="ts">
 import { GitCompareArrows, Heart, Menu, Search, ShoppingBag, X } from 'lucide-vue-next'
 import { products } from '~/data/products'
+import { productCategories } from '~/data/product-categories'
 import { formatPrice } from '~/composables/useProducts'
 
 const route = useRoute()
@@ -253,7 +255,7 @@ const overHero = computed(() => isHome.value && !scrolled.value)
 
 const headerClass = computed(() => {
   if (overHero.value) return 'bg-transparent border-b border-transparent'
-  return 'bg-white/85 backdrop-blur-xl border-b border-border shadow-soft'
+  return 'bg-white/80 backdrop-blur-2xl border-b border-border/80 shadow-glass'
 })
 
 const navTextClass = computed(() =>
@@ -267,18 +269,18 @@ const iconBtnClass = computed(() =>
 )
 
 const navLinks = [
-  { label: 'Chandeliers', to: '/lighting/chandeliers', match: '/lighting/chandeliers' },
   { label: 'About Us', to: '/about', match: '/about' },
   { label: 'Contact', to: '/contact', match: '/contact' },
   { label: 'Projects', to: '/projects', match: '/projects' },
 ]
 
-const megaCategories = [
-  { title: 'Chandeliers', to: '/lighting/chandeliers', image: '/collection_1.jpg', count: '48 pieces' },
-  { title: 'Pendants', to: '/lighting/pendant-lights', image: '/collection_2.jpg', count: '62 pieces' },
-  { title: 'Wall Lights', to: '/lighting/wall-lights', image: '/homepages/a1.jpg', count: '41 pieces' },
-  { title: 'Floor Lamps', to: '/lighting/floor-lamps', image: '/collection_3.jpg', count: '35 pieces' },
-]
+const megaCategories = productCategories.map(cat => ({
+  title: cat.title,
+  to: cat.to,
+  image: cat.image,
+  count: `${cat.count} Products`,
+  subtitle: cat.subtitle,
+}))
 
 const searchResults = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()

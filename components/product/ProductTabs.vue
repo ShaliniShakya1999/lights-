@@ -49,7 +49,7 @@
         <div class="rounded-2xl bg-accent-soft/60 border border-accent/15 p-5">
           <p class="text-sm font-medium text-text">Concierge Installation</p>
           <p class="mt-2 text-sm text-text-muted leading-relaxed">
-            Book a certified electrician through Lampe Concierge. Available in Mumbai, Bangalore, and Delhi NCR within 48 hours of delivery.
+            Book a certified electrician through DINMANS Concierge. Available in Mumbai, Bangalore, and Delhi NCR within 48 hours of delivery.
           </p>
         </div>
       </div>

@@ -1,36 +1,12 @@
 <script setup lang="ts">
-import { catalogImages } from '~/data/catalog-images'
+import { ArrowRight } from 'lucide-vue-next'
+import { productCategories } from '~/data/product-categories'
 
-const categories = [
-  {
-    title: 'Lamps',
-    image: catalogImages[2] || '/catalog/p3.jpg',
-    to: '/lighting/lamps',
-    count: 'Table & floor lamps',
-  },
-  {
-    title: 'General Light Interior',
-    image: '/homepages/c3.jpg',
-    to: '/lighting/general-light-interior',
-    count: 'Everyday interiors',
-  },
-  {
-    title: 'Chandeliers',
-    image: '/homepages/d4.jpg',
-    to: '/lighting/chandeliers',
-    count: 'Statement pieces',
-  },
-  {
-    title: 'COB Panel Track Lights',
-    image: catalogImages[10] || '/catalog/p11.jpg',
-    to: '/lighting/cob-panel-track-lights',
-    count: 'Commercial & home',
-  },
-]
+const categories = productCategories
 </script>
 
 <template>
-  <section class="py-20 lg:py-28 bg-background">
+  <section class="bg-background py-20 lg:py-28">
     <div class="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10">
       <div class="mx-auto max-w-2xl text-center">
         <p class="section-label" data-animate="fade-up">Featured Categories</p>
@@ -54,15 +30,18 @@ const categories = [
           <img
             :src="item.image"
             :alt="item.title"
-            class="img-zoom h-full w-full object-cover"
+            class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             loading="lazy"
           >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-500 group-hover:from-black/90" />
-          <div class="absolute inset-x-0 bottom-0 p-5 sm:p-6 translate-y-1 transition-transform duration-500 group-hover:translate-y-0">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-all duration-500 group-hover:from-black/90 group-hover:via-black/40" />
+          <div class="absolute inset-x-0 bottom-0 p-5 sm:p-6">
             <h3 class="font-playfair text-xl text-white sm:text-2xl">{{ item.title }}</h3>
-            <p class="mt-1 text-xs text-white/55">{{ item.count }}</p>
-            <span class="mt-3 inline-flex items-center text-xs text-white/70 transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent">
-              Explore →
+            <p class="mt-1.5 text-xs tracking-wide text-white/60">
+              {{ item.count }} Products
+            </p>
+            <span class="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-white/75 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-accent">
+              Explore
+              <ArrowRight :size="14" class="transition-transform duration-300 group-hover:translate-x-1" />
             </span>
           </div>
         </NuxtLink>

@@ -12,15 +12,20 @@ useSeoMeta({
     <HomeHero />
     <HomeQualityHighlights />
     <HomeCategories />
+    <HomeFeaturedCollection />
     <HomeBestSeller />
     <HomeNewArrival />
+    <HomeShopByStyle />
     <HomeLifestyleBanner />
     <HomeStoreExperience />
     <HomeWhyChooseUs />
     <HomeBrands />
     <HomeInspirationGallery />
+    <HomeCustomerStories />
     <HomeTestimonials />
     <HomeInstagram />
     <HomeBlogPreview />
+    <HomeFaqTeaser />
+    <HomeNewsletter />
   </div>
 </template>
